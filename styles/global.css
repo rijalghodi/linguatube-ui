@@ -1,0 +1,5 @@
+.second-layer-hover {
+  &:hover {
+    background-color: "red";
+  }
+}

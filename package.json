@@ -11,9 +11,13 @@
   "dependencies": {
     "@mantine/core": "7.12.1",
     "@mantine/hooks": "7.12.1",
+    "@mantine/modals": "^7.12.1",
+    "@tabler/icons-react": "^3.12.0",
     "next": "14.2.4",
+    "next-seo": "^6.5.0",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@types/node": "20.14.8",
