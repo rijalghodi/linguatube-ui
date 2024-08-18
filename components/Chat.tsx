@@ -83,7 +83,7 @@ export function Chat(props: Props) {
       radius="md"
       p="sm"
       miw={300}
-      maw={400}
+      maw={600}
       w="100%"
       styles={{
         root: {
@@ -125,7 +125,7 @@ export function Chat(props: Props) {
                 px={12}
                 withBorder
                 shadow="none"
-                maw={336}
+                maw={400}
                 w="max-content"
                 style={{
                   alignSelf: chat.sender === "user" ? "flex-end" : "flex-start",

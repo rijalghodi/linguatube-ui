@@ -31,9 +31,10 @@ import {
 import styles from "@/styles/component.module.css";
 import { SettingModal } from "../SettingModal";
 import { modals } from "@mantine/modals";
+import { useRouter } from "next/router";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
-  const [opened, { toggle }] = useDisclosure(true);
+  const router = useRouter();
   return (
     <AppShell
       layout="alt"
@@ -57,7 +58,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                 color="dark"
                 onClick={() =>
                   modals.openContextModal({
-                    modal: "vocabulary",
+                    modal: "vocab-book",
                     innerProps: {},
                     title: "Vocabulary",
                     size: "xl",
@@ -68,12 +69,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
               </Button>
               <Menu shadow="sm" width={140} position="bottom-end">
                 <Menu.Target>
-                  <ActionIcon
-                    variant="subtle"
-                    color="dark"
-                    onClick={toggle}
-                    size="lg"
-                  >
+                  <ActionIcon variant="subtle" color="dark" size="lg">
                     <IconMenu4 size={22} />
                   </ActionIcon>
                 </Menu.Target>
@@ -116,8 +112,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                         ),
                         confirmProps: { color: "red" },
                         labels: { confirm: "Reset Chat", cancel: "Cancel" },
-                        onCancel: () => console.log("Cancel"),
-                        onConfirm: () => console.log("Confirmed"),
+                        onConfirm: () => router.push("/"),
                       })
                     }
                   >

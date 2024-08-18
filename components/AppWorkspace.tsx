@@ -24,7 +24,7 @@ export function AppWorkspace(props: Props) {
       pb="md"
     >
       <Group align="flex-start" justify="center" h="100%" gap="xl">
-        <Box flex={{ base: 1, sm: 2 }} maw={700}>
+        <Box flex={{ base: 1, sm: 2 }} maw={640}>
           <VideoAndScript />
         </Box>
         <Box
@@ -39,8 +39,8 @@ export function AppWorkspace(props: Props) {
       </Group>
       <Group
         pos="absolute"
-        bottom={16}
-        right={24}
+        bottom={{ base: 24, md: 64 }}
+        right={{ base: 24, md: 64 }}
         style={{ display: chatOpened ? "none" : "flex" }}
       >
         <Tooltip label="Open Chat" position="top" withArrow>

@@ -22,14 +22,14 @@ export function VocabInfo(props: Props) {
   const [wordInfo, setWordInfo] = useState<WordInfo | null>(null);
 
   const handleSaveVocab = (): void => {
-    const prevVocabString = localStorage.getItem("vocab");
+    const prevVocabString = localStorage.getItem("linguatube.vocab");
     const prevVocab = prevVocabString
       ? (JSON.parse(prevVocabString) as Vocab[])
       : ([] as Vocab[]);
     const newVocab = { word: word, meaning: meaning, sentence: sentence };
     const allVocab = [...prevVocab, newVocab];
 
-    localStorage.setItem("vocab", JSON.stringify(allVocab));
+    localStorage.setItem("linguatube.vocab", JSON.stringify(allVocab));
     props.onSuccessSave?.();
   };
 

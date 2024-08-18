@@ -3,15 +3,15 @@ import React from "react";
 import { OpenaiApiKeyInput } from "./OpenaiApiKeyInput";
 import { Button, Text } from "@mantine/core";
 import { ContextModalProps, ModalsProvider } from "@mantine/modals";
-import { VocabularyBook } from "./VocabularyBook";
+import { VocabBook } from "./VocabBook";
 
-export function VocabularyModal({
+export function VocabBookModal({
   innerProps,
 }: ContextModalProps<{ modalBody?: string }>) {
   return (
     <Stack>
       {innerProps.modalBody && <Text>{innerProps.modalBody}</Text>}
-      <VocabularyBook />
+      <VocabBook />
     </Stack>
   );
 }

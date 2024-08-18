@@ -47,11 +47,13 @@ export function Script(props: Props) {
 
         if (fullWord) setSelectedFullWord(fullWord);
         if (fullSentence) setSelectedFullSentence(fullSentence);
-        if (selectionPos && containerPos)
+        if (selectionPos && containerPos) {
+          const topPos = selectionPos.top - containerPos.top;
           setHelperPos({
-            top: selectionPos.top - containerPos.top - 40,
+            top: topPos > 40 ? topPos - 40 : topPos + 30,
             right: containerPos.right - selectionPos.right,
           });
+        }
         console.log(fullWord);
         return;
       }
@@ -98,7 +100,7 @@ export function Script(props: Props) {
               }}
               onClick={() => {
                 modals.openContextModal({
-                  modal: "word-info",
+                  modal: "vocab-info",
                   title: "Word Information",
                   innerProps: {
                     word: selectedFullWord,

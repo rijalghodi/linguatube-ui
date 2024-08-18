@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import { useOpenaiApiKey } from "@/store/openai_api_key.store";
 type Props = PasswordInputProps;
 export function OpenaiApiKeyInput(props: Props) {
-  const initKey = localStorage.getItem("openai-api-key");
+  const initKey = localStorage.getItem("linguatube.openaiApiKey");
   const [key, setKey] = useState<string>(initKey ?? "");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e?.target.value;
     if (value) {
-      localStorage.setItem("openai-api-key", value);
+      localStorage.setItem("linguatube.openaiApiKey", value);
     }
     setKey(value);
   };

@@ -8,7 +8,7 @@ import { DefaultSeo } from "next-seo";
 import { defaultSeo } from "../next-seo.config";
 import { SettingModal } from "@/components/SettingModal";
 import { AboutModal } from "@/components/AboutModal";
-import { VocabularyModal } from "@/components/VocabularyModal";
+import { VocabBookModal } from "@/components/VocabBookModal";
 import { VocabInfoModal } from "@/components/VocabInfoModal";
 
 const font = Source_Sans_3({
@@ -29,8 +29,8 @@ export default function App({ Component, pageProps }: any) {
             modals={{
               setting: SettingModal,
               about: AboutModal,
-              vocabulary: VocabularyModal,
-              "word-info": VocabInfoModal,
+              "vocab-book": VocabBookModal,
+              "vocab-info": VocabInfoModal,
             }}
             modalProps={{ centered: true, size: "md" }}
           >

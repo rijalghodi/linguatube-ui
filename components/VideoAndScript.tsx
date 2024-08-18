@@ -71,7 +71,7 @@ export function VideoAndScript(props: Props) {
           base: "calc(100vh - (9/16)*100vw - 60px)",
           sm:
             width > 1200
-              ? "calc(100vh - (9/16)*700px - 60px - 32px)"
+              ? "calc(100vh - (9/16)*640px - 60px - 32px)"
               : "calc(100vh - (9/16)*(3/5)*100vw - 60px - 8px)",
         }}
       >

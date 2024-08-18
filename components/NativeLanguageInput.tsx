@@ -2,12 +2,12 @@ import { Select, SelectProps } from "@mantine/core";
 import React, { useState } from "react";
 type Props = SelectProps;
 export function NativeLanguageInput(props: Props) {
-  const initLanguage = localStorage.getItem("native-language");
+  const initLanguage = localStorage.getItem("linguatube.nativeLanguage");
   const [language, setLanguage] = useState<string | null>(initLanguage);
 
   const handleChange = (value: string | null) => {
     if (value) {
-      localStorage.setItem("native-language", value);
+      localStorage.setItem("linguatube.nativeLanguage", value);
     }
     setLanguage(value);
   };
