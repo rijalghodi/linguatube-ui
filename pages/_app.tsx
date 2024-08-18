@@ -9,6 +9,7 @@ import { defaultSeo } from "../next-seo.config";
 import { SettingModal } from "@/components/SettingModal";
 import { AboutModal } from "@/components/AboutModal";
 import { VocabularyModal } from "@/components/VocabularyModal";
+import { VocabInfoModal } from "@/components/VocabInfoModal";
 
 const font = Source_Sans_3({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function App({ Component, pageProps }: any) {
               setting: SettingModal,
               about: AboutModal,
               vocabulary: VocabularyModal,
+              "word-info": VocabInfoModal,
             }}
             modalProps={{ centered: true, size: "md" }}
           >

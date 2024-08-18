@@ -114,7 +114,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                             history
                           </Text>
                         ),
-                        labels: { confirm: "Confirm", cancel: "Cancel" },
+                        confirmProps: { color: "red" },
+                        labels: { confirm: "Reset Chat", cancel: "Cancel" },
                         onCancel: () => console.log("Cancel"),
                         onConfirm: () => console.log("Confirmed"),
                       })

@@ -1,0 +1,118 @@
+import {
+  getFullSentenceFromSelection,
+  getFullWordFromSelection,
+  getSelectionPosition,
+} from "@/utils";
+import { Stack, Group, ActionIcon, Text, Tooltip } from "@mantine/core";
+import { modals } from "@mantine/modals";
+import { IconLanguageHiragana, IconVolume2 } from "@tabler/icons-react";
+import React, { useEffect, useRef, useState } from "react";
+
+type ScriptData = {
+  text: string;
+  time: string;
+};
+type Props = {
+  scripts: ScriptData[];
+};
+export function Script(props: Props) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [helperPos, setHelperPos] = useState<{
+    top: number;
+    right: number;
+  } | null>({ top: 0, right: 0 });
+
+  const [selectedFullSentence, setSelectedFullSentence] = useState<
+    string | null
+  >(null);
+  const [selectedFullWord, setSelectedFullWord] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleMouseUp = () => {
+      const selection = window.getSelection();
+      const containerPos = containerRef.current?.getBoundingClientRect();
+      console.log(containerPos, "con");
+
+      if (
+        selection &&
+        !selection.isCollapsed &&
+        selection.toString().length > 0 &&
+        selection.rangeCount > 0
+      ) {
+        const fullWord = getFullWordFromSelection(selection);
+        const fullSentence = getFullSentenceFromSelection(selection);
+        const selectionPos = getSelectionPosition(selection);
+        console.log(selectionPos, "sele");
+        console.log(selection.rangeCount, "range count");
+
+        if (fullWord) setSelectedFullWord(fullWord);
+        if (fullSentence) setSelectedFullSentence(fullSentence);
+        if (selectionPos && containerPos)
+          setHelperPos({
+            top: selectionPos.top - containerPos.top - 40,
+            right: containerPos.right - selectionPos.right,
+          });
+        console.log(fullWord);
+        return;
+      }
+
+      setSelectedFullSentence(null);
+      setSelectedFullWord(null);
+      setHelperPos(null);
+    };
+
+    document.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
+  return (
+    <Stack align="stretch" ref={containerRef} pos="relative">
+      {props.scripts.map((script, i) => (
+        <Group gap="xs" key={i} wrap="nowrap" align="flex-start">
+          <ActionIcon size="md" color="red" variant="subtle" radius="xl">
+            <IconVolume2 size={16} />
+          </ActionIcon>
+          <Text component="p">{script.text}</Text>
+        </Group>
+      ))}
+      {helperPos && (
+        <Group
+          pos="absolute"
+          right={helperPos.right}
+          top={helperPos.top}
+          style={{ zIndex: 20 }}
+        >
+          <Tooltip label="Word Information" withArrow>
+            <ActionIcon
+              size="lg"
+              color="dark"
+              variant="default"
+              radius="xl"
+              styles={{
+                root: {
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset",
+                },
+              }}
+              onClick={() => {
+                modals.openContextModal({
+                  modal: "word-info",
+                  title: "Word Information",
+                  innerProps: {
+                    word: selectedFullWord,
+                    sentence: selectedFullSentence,
+                  },
+                  size: "xl",
+                });
+              }}
+            >
+              <IconLanguageHiragana size={18} />
+            </ActionIcon>
+          </Tooltip>
+        </Group>
+      )}
+    </Stack>
+  );
+}

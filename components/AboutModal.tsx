@@ -11,10 +11,9 @@ export function AboutModal({
   return (
     <Stack gap={4}>
       {innerProps.modalBody && <Text>{innerProps.modalBody}</Text>}
-      <Text>Created by</Text>
-      <Text fz="lg">Rijal Ghodi</Text>
-      <Text>rijalghodi10@gmail.com</Text>
-      <Group>
+      <Text fz="sm">Rijal Ghodi</Text>
+      <Text fz="sm">rijalghodi10@gmail.com</Text>
+      <Group fz="sm">
         <Link href="https://github.com/rijalghodi/linguatube-ui">
           Source Code
         </Link>
@@ -22,7 +21,7 @@ export function AboutModal({
           Issues
         </Link>
         <Link href="https://github.com/rijalghodi/linguatube-ui/issues">
-          Tutorial
+          Contributing
         </Link>
       </Group>
     </Stack>

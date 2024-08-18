@@ -4,15 +4,16 @@ import { OpenaiApiKeyInput } from "./OpenaiApiKeyInput";
 import { Button, Text } from "@mantine/core";
 import { ContextModalProps, ModalsProvider } from "@mantine/modals";
 import { NativeLanguageInput } from "./NativeLanguageInput";
+import { VocabInfo } from "./VocabInfo";
 
-export function SettingModal({
+export function VocabInfoModal({
   innerProps,
-}: ContextModalProps<{ modalBody: string }>) {
+}: ContextModalProps<{ word: string; meaning?: string; sentence?: string }>) {
   return (
-    <Stack>
-      {innerProps.modalBody && <Text>{innerProps.modalBody}</Text>}
-      <OpenaiApiKeyInput />
-      <NativeLanguageInput />
-    </Stack>
+    <VocabInfo
+      word={innerProps.word}
+      meaning={innerProps.meaning}
+      sentence={innerProps.sentence}
+    />
   );
 }

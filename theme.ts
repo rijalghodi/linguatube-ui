@@ -3,7 +3,7 @@ import { createTheme, Modal, NavLink } from "@mantine/core";
 export const theme = createTheme({
   /* Put your mantine theme override here */
   black: "#444444",
-  primaryColor: "red",
+  primaryColor: "dark",
   defaultRadius: "md",
   components: {
     NavLink: NavLink.extend({

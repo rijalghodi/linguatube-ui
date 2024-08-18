@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Container,
+  Flex,
   Group,
   Modal,
   Stack,
@@ -20,6 +21,7 @@ import Link from "next/link";
 import { IconBubble, IconMessageCircle } from "@tabler/icons-react";
 import { OpenaiApiKeyInput } from "@/components";
 import { useRouter } from "next/router";
+import { NativeLanguageInput } from "./NativeLanguageInput";
 
 type Props = {};
 
@@ -53,14 +55,28 @@ export function Introduction({}: Props) {
           videos
         </Text>
       </Stack>
-      <Stack component="section" maw={500} w="100%" mx="auto">
-        <OpenaiApiKeyInput />
-        <TextInput size="lg" placeholder="Paste a Youtube link here" />
+      <Stack component="section" maw={600} w="100%" mx="auto" align="center">
+        <Flex
+          direction={{ sm: "row", base: "column" }}
+          gap="sm"
+          justify="stretch"
+          w="100%"
+        >
+          <OpenaiApiKeyInput flex={1} />
+          <NativeLanguageInput flex={1} />
+        </Flex>
+        <TextInput
+          size="md"
+          placeholder="Paste a Youtube link here"
+          w="100%"
+          color="dark"
+        />
         <Button
           size="lg"
-          color="dark"
           onClick={openLearningPage}
           leftSection={<IconMessageCircle />}
+          maw={200}
+          w="100%"
         >
           Learn
         </Button>
