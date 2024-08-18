@@ -1,9 +1,11 @@
+import { Vocab } from "@/types/vocab";
 import { Button, Stack, TextInput, Text, Group, Box } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 type Props = {
   word: string;
   meaning?: string;
   sentence?: string;
+  onSuccessSave?: () => void;
 };
 
 type WordInfo = {
@@ -16,8 +18,21 @@ type WordInfo = {
 export function VocabInfo(props: Props) {
   const [word, setWord] = useState<string>(props.word);
   const [meaning, setMeaning] = useState<string>(props.meaning ?? "");
-  const [example, setExample] = useState<string>(props.sentence ?? "");
+  const [sentence, setSentence] = useState<string>(props.sentence ?? "");
   const [wordInfo, setWordInfo] = useState<WordInfo | null>(null);
+
+  const handleSaveVocab = (): void => {
+    const prevVocabString = localStorage.getItem("vocab");
+    const prevVocab = prevVocabString
+      ? (JSON.parse(prevVocabString) as Vocab[])
+      : ([] as Vocab[]);
+    const newVocab = { word: word, meaning: meaning, sentence: sentence };
+    const allVocab = [...prevVocab, newVocab];
+
+    localStorage.setItem("vocab", JSON.stringify(allVocab));
+    props.onSuccessSave?.();
+  };
+
   // TODO: get word info
   useEffect(() => {
     setMeaning("Meaning1");
@@ -47,13 +62,15 @@ export function VocabInfo(props: Props) {
         />
         <TextInput
           label="Example"
-          value={example}
-          onChange={(e) => setExample(e.target.value)}
+          value={sentence}
+          onChange={(e) => setSentence(e.target.value)}
           size="md"
         />
       </Stack>
       <Group justify="center" w="100%" mt="sm">
-        <Button size="md">Save Vocab</Button>
+        <Button size="md" onClick={handleSaveVocab}>
+          Save Vocab
+        </Button>
       </Group>
       <Stack gap={6}>
         <Text fw="bold" fz="md">
