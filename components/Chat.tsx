@@ -121,7 +121,11 @@ export function Chat(props: Props) {
             {chats.map((chat, i) => (
               <Paper
                 key={i}
-                bg={chat.sender === "user" ? "gray.2" : "white"}
+                bg={
+                  chat.sender === "user"
+                    ? "var(--mantine-color-default-border)"
+                    : undefined
+                }
                 py={8}
                 px={12}
                 withBorder

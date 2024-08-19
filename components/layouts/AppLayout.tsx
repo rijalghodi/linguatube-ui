@@ -7,6 +7,7 @@ import {
   Container,
   Divider,
   Group,
+  MantineColorScheme,
   Menu,
   NavLink,
   Paper,
@@ -14,6 +15,7 @@ import {
   Stack,
   Text,
   Tooltip,
+  useMantineColorScheme,
 } from "@mantine/core";
 import Image from "next/image";
 import logo from "@/public/logo.png";
@@ -32,9 +34,16 @@ import styles from "@/styles/component.module.css";
 import { SettingModal } from "../SettingModal";
 import { modals } from "@mantine/modals";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const { colorScheme, setColorScheme } = useMantineColorScheme();
+
+  useEffect(() => {
+    const initCs = localStorage.getItem("linguatube.colorScheme");
+    setColorScheme((initCs as MantineColorScheme) ?? "dark");
+  }, [setColorScheme]);
   return (
     <AppShell
       layout="alt"
@@ -55,7 +64,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             <Group gap="md">
               <Button
                 variant="subtle"
-                color="gray"
+                color={colorScheme === "dark" ? "gray" : "dark"}
                 onClick={() =>
                   modals.openContextModal({
                     modal: "vocab-book",

@@ -22,7 +22,6 @@ const font = Fira_Sans({
 });
 
 export default function App({ Component, pageProps }: any) {
-  const colorScheme = localStorage.getItem("linguatube.colorScheme");
   const getLayout = Component.getLayout ?? ((page: React.JSX.Element) => page);
   return (
     <>
@@ -30,7 +29,7 @@ export default function App({ Component, pageProps }: any) {
       <QueryClientProvider client={queryClient}>
         <div className={`${font.className}`}>
           <MantineProvider
-            defaultColorScheme={(colorScheme as MantineColorScheme) ?? "dark"}
+            defaultColorScheme={"dark"}
             theme={{ ...theme, fontFamily: font.style.fontFamily }}
           >
             <Notifications />

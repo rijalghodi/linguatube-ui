@@ -1,13 +1,17 @@
-import { Select, SelectProps, useMantineColorScheme } from "@mantine/core";
-import React, { useState } from "react";
-import languages from "@/data/languages.json";
+import {
+  MantineColorScheme,
+  Select,
+  SelectProps,
+  useMantineColorScheme,
+} from "@mantine/core";
+import React, { useEffect } from "react";
 type Props = SelectProps;
 export function ColorSchemeInput(props: Props) {
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const { setColorScheme, colorScheme } = useMantineColorScheme();
 
   const handleChange = (value: string | null) => {
     localStorage.setItem("linguatube.colorScheme", value ?? "");
-    toggleColorScheme();
+    setColorScheme((value as MantineColorScheme) ?? "dark");
   };
   return (
     <Select
@@ -18,7 +22,6 @@ export function ColorSchemeInput(props: Props) {
       data={[
         { value: "dark", label: "Dark" },
         { value: "light", label: "Light" },
-        { value: "auto", label: "Auto" },
       ]}
       value={colorScheme}
       onChange={handleChange}
