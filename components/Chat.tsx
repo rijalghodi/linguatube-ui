@@ -118,8 +118,9 @@ export function Chat(props: Props) {
       <Card.Section withBorder py="xs">
         <ScrollArea h={500} px="md" scrollbarSize={10}>
           <Stack gap={8}>
-            {chats.map((chat) => (
+            {chats.map((chat, i) => (
               <Paper
+                key={i}
                 bg={chat.sender === "user" ? "gray.2" : "white"}
                 py={8}
                 px={12}
