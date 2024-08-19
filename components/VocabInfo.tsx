@@ -1,5 +1,17 @@
-import { Vocab } from "@/types/vocab";
-import { Button, Stack, TextInput, Text, Group, Box } from "@mantine/core";
+import { axiosInstance } from "@/requests/axios-instace";
+import { invokeWordInfo } from "@/requests/invokeWordInfo";
+import { translateWord } from "@/requests/translateWord";
+import { Vocab, WordInfo } from "@/types/vocab";
+import {
+  Button,
+  Stack,
+  TextInput,
+  Text,
+  Group,
+  Box,
+  Loader,
+} from "@mantine/core";
+import { useMutation } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 type Props = {
   word: string;
@@ -8,19 +20,13 @@ type Props = {
   onSuccessSave?: () => void;
 };
 
-type WordInfo = {
-  meaning: string;
-  usage: string;
-  definition: string;
-  synonim: string;
-  examples: string[];
-};
 export function VocabInfo(props: Props) {
   const [word, setWord] = useState<string>(props.word);
   const [meaning, setMeaning] = useState<string>(props.meaning ?? "");
   const [sentence, setSentence] = useState<string>(props.sentence ?? "");
   const [wordInfo, setWordInfo] = useState<WordInfo | null>(null);
 
+  // ==== # handle save vocab ====
   const handleSaveVocab = (): void => {
     const prevVocabString = localStorage.getItem("linguatube.vocab");
     const prevVocab = prevVocabString
@@ -33,17 +39,30 @@ export function VocabInfo(props: Props) {
     props.onSuccessSave?.();
   };
 
-  // TODO: get word info
-  useEffect(() => {
-    setMeaning("Meaning1");
-    setWordInfo({
-      meaning: "Meaning1",
-      usage: "To be used",
-      definition: "To be defined",
-      examples: ["Hello wordl", "Hola"],
-      synonim: "Synonim1",
+  // ==== # handle search word info ====
+  const nativeLanguage = localStorage.getItem("linguatube.nativeLanguage");
+  const { isPending: wordInfoIsPending, mutateAsync: wordInfoMutate } =
+    useMutation({
+      mutationFn: invokeWordInfo,
     });
-  }, []);
+  const { isPending: translateIsPending, mutateAsync: traslateMutate } =
+    useMutation({
+      mutationFn: translateWord,
+    });
+  const handleSearchWord = async () => {
+    const translation = await traslateMutate({
+      word,
+      sentence,
+      nativeLanguage: nativeLanguage ?? undefined,
+    });
+    const wordInfo = await wordInfoMutate({ word, sentence });
+    if (wordInfo) setWordInfo(wordInfo);
+    if (translation) setMeaning(translation);
+  };
+
+  useEffect(() => {
+    handleSearchWord();
+  }, []); // eslint-disable-line
 
   return (
     <Stack align="stretch" gap="xs">
@@ -56,7 +75,8 @@ export function VocabInfo(props: Props) {
         />
         <TextInput
           label="Meaning"
-          value={meaning}
+          value={translateIsPending ? "....." : meaning}
+          readOnly={translateIsPending}
           onChange={(e) => setMeaning(e.target.value)}
           size="md"
         />
@@ -72,24 +92,39 @@ export function VocabInfo(props: Props) {
           Save Vocab
         </Button>
       </Group>
-      <Stack gap={6}>
-        <Text fw="bold" fz="md">
-          Definition
-        </Text>
-        <Text fz="md">{wordInfo?.definition ?? "Loading..."}</Text>
-        <Text fw="bold" fz="md" mt={6}>
-          Synonim
-        </Text>
-        <Text fz="md">{wordInfo?.synonim ?? "Loading..."}</Text>
-        <Text fw="bold" fz="md" mt={6}>
-          Usage
-        </Text>
-        <Text fz="md">{wordInfo?.usage ?? "Loading..."}</Text>
-        <Text fw="bold" fz="md" mt={6}>
-          Examples
-        </Text>
-        <Text fz="md">{wordInfo?.examples.join(", ") ?? "Loading..."}</Text>
-      </Stack>
+      {wordInfoIsPending ? (
+        <Stack h={200} align="center" justify="center">
+          <Loader size="md" />
+          <Text fz="sm">Loading word info...</Text>
+        </Stack>
+      ) : (
+        <Stack gap={6}>
+          <Text fw="bold" fz="md">
+            Definition
+          </Text>
+          <Text fz="md">
+            {wordInfoIsPending ? "Loading..." : wordInfo?.definition}
+          </Text>
+          <Text fw="bold" fz="md" mt={6}>
+            Synonim
+          </Text>
+          <Text fz="md">
+            {wordInfoIsPending ? "Loading..." : wordInfo?.synonim}
+          </Text>
+          <Text fw="bold" fz="md" mt={6}>
+            Usage
+          </Text>
+          <Text fz="md">
+            {wordInfoIsPending ? "Loading..." : wordInfo?.usage}
+          </Text>
+          <Text fw="bold" fz="md" mt={6}>
+            Examples
+          </Text>
+          <Text fz="md">
+            {wordInfoIsPending ? "Loading..." : wordInfo?.example?.join(", ")}
+          </Text>
+        </Stack>
+      )}
     </Stack>
   );
 }

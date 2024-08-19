@@ -1,5 +1,6 @@
 import { Select, SelectProps } from "@mantine/core";
 import React, { useState } from "react";
+import languages from "@/data/languages.json";
 type Props = SelectProps;
 export function NativeLanguageInput(props: Props) {
   const initLanguage = localStorage.getItem("linguatube.nativeLanguage");
@@ -17,11 +18,10 @@ export function NativeLanguageInput(props: Props) {
       placeholder="Select language"
       searchable
       miw={250}
-      data={[
-        { value: "en", label: "English" },
-        { value: "id", label: "Indonesian" },
-        { value: "uz", label: "Uzbekistan" },
-      ]}
+      data={languages.map(({ country, language }) => ({
+        value: `${language} (${country})`,
+        label: `${country} (${language})`,
+      }))}
       value={language}
       onChange={handleChange}
       {...props}

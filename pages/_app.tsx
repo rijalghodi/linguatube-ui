@@ -10,6 +10,9 @@ import { SettingModal } from "@/components/SettingModal";
 import { AboutModal } from "@/components/AboutModal";
 import { VocabBookModal } from "@/components/VocabBookModal";
 import { VocabInfoModal } from "@/components/VocabInfoModal";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const font = Source_Sans_3({
   subsets: ["latin"],
@@ -21,23 +24,25 @@ export default function App({ Component, pageProps }: any) {
   return (
     <>
       <DefaultSeo {...defaultSeo} />
-      <div className={`${font.className}`}>
-        <MantineProvider
-          theme={{ ...theme, fontFamily: font.style.fontFamily }}
-        >
-          <ModalsProvider
-            modals={{
-              setting: SettingModal,
-              about: AboutModal,
-              "vocab-book": VocabBookModal,
-              "vocab-info": VocabInfoModal,
-            }}
-            modalProps={{ centered: true, size: "md" }}
+      <QueryClientProvider client={queryClient}>
+        <div className={`${font.className}`}>
+          <MantineProvider
+            theme={{ ...theme, fontFamily: font.style.fontFamily }}
           >
-            {getLayout(<Component {...pageProps} />)}
-          </ModalsProvider>
-        </MantineProvider>
-      </div>
+            <ModalsProvider
+              modals={{
+                setting: SettingModal,
+                about: AboutModal,
+                "vocab-book": VocabBookModal,
+                "vocab-info": VocabInfoModal,
+              }}
+              modalProps={{ centered: true, size: "md" }}
+            >
+              {getLayout(<Component {...pageProps} />)}
+            </ModalsProvider>
+          </MantineProvider>
+        </div>
+      </QueryClientProvider>
     </>
   );
 }
