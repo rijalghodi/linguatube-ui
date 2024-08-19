@@ -2842,6 +2842,7 @@ __metadata:
     react-dom: "npm:18.3.1"
     sharp: "npm:^0.33.5"
     typescript: "npm:5.5.2"
+    youtube-iframe-ctrl: "npm:^1.0.2"
     zustand: "npm:^4.5.5"
   languageName: unknown
   linkType: soft
@@ -4516,6 +4517,13 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: 10c0/dceb44c28578b31641e13695d200d34ec4ab3966a5729814d5445b194933c096b7ced71494ce53a0e8820685d1d010df8b2422e5bf2cdea7e469d97ffbea306f
+  languageName: node
+  linkType: hard
+
+"youtube-iframe-ctrl@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "youtube-iframe-ctrl@npm:1.0.2"
+  checksum: 10c0/84b84e2a8712424528517792abd6b0ee8647d74c2e4a41004554f1bcbacbecc2e5d58f4e2797ce00561f324904ed08258c9060eea4dcd46f627bd3623662de9d
   languageName: node
   linkType: hard
 

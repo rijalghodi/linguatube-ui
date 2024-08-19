@@ -55,7 +55,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             <Group gap="md">
               <Button
                 variant="subtle"
-                color="dark"
+                color="gray"
                 onClick={() =>
                   modals.openContextModal({
                     modal: "vocab-book",

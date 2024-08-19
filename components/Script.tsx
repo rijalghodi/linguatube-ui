@@ -3,29 +3,42 @@ import {
   getFullWordFromSelection,
   getSelectionPosition,
 } from "@/utils";
-import { Stack, Group, ActionIcon, Text, Tooltip } from "@mantine/core";
+import { timestampToSeconds } from "@/utils/timestampToSeconds";
+import {
+  Stack,
+  Group,
+  ActionIcon,
+  Text,
+  Tooltip,
+  Paper,
+  Button,
+  Divider,
+} from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { IconLanguageHiragana, IconVolume2 } from "@tabler/icons-react";
 import React, { useEffect, useRef, useState } from "react";
 
 type ScriptData = {
   text: string;
-  time: string;
+  start?: number;
+  timestamp: string;
 };
 type Props = {
   scripts: ScriptData[];
+  onSeekTo?: (time: number) => void;
 };
 export function Script(props: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [helperPos, setHelperPos] = useState<{
     top: number;
     right: number;
-  } | null>({ top: 0, right: 0 });
+  } | null>(null);
 
   const [selectedFullSentence, setSelectedFullSentence] = useState<
     string | null
   >(null);
   const [selectedFullWord, setSelectedFullWord] = useState<string | null>(null);
+  console.log(props.scripts);
 
   useEffect(() => {
     const handleMouseUp = () => {
@@ -73,7 +86,16 @@ export function Script(props: Props) {
     <Stack align="stretch" ref={containerRef} pos="relative">
       {props.scripts.map((script, i) => (
         <Group gap="xs" key={i} wrap="nowrap" align="flex-start">
-          <ActionIcon size="md" color="red" variant="subtle" radius="xl">
+          <ActionIcon
+            size="md"
+            color="red"
+            variant="subtle"
+            radius="xl"
+            onClick={() => {
+              console.log(timestampToSeconds(script.timestamp));
+              props.onSeekTo?.(timestampToSeconds(script.timestamp));
+            }}
+          >
             <IconVolume2 size={16} />
           </ActionIcon>
           <Text component="p">{script.text}</Text>

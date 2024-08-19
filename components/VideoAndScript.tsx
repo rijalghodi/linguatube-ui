@@ -1,71 +1,55 @@
-import { ActionIcon, Box, Group, ScrollArea, Stack, Text } from "@mantine/core";
+import {
+  ActionIcon,
+  Box,
+  Center,
+  Group,
+  Loader,
+  ScrollArea,
+  Stack,
+  Text,
+} from "@mantine/core";
 import { IconPlayerPlay, IconVolume2 } from "@tabler/icons-react";
 import { useViewportSize } from "@mantine/hooks";
-import React from "react";
+import React, { useRef } from "react";
 import { Script } from "./Script";
+import { useQuery } from "@tanstack/react-query";
+import { getVideo } from "@/requests/get-video";
+import { useRouter } from "next/router";
+import { getTranscript } from "@/requests/get-transcript";
+import { YoutubePlayer, YoutubePlayerRef } from "./YoutubePlayer";
+import YouTubeIFrameCtrl from "youtube-iframe-ctrl";
 type Props = {};
 export function VideoAndScript(props: Props) {
+  const playerRef = useRef<YoutubePlayerRef>(null);
   const { height, width } = useViewportSize();
-  const scripts = [
-    {
-      text: "A mundane decision that you need to take what book to read?",
-      time: "00:00",
-    },
-    {
-      text: "A mundane decision that you need to take what book to read?",
-      time: "00:00",
-    },
-    {
-      text: "A mundane decision that you need to take what book to read?",
-      time: "00:00",
-    },
-    {
-      text: "A mundane decision that you need to take what book to read?",
-      time: "00:00",
-    },
-    {
-      text: "A mundane decision that you need to take what book to read?",
-      time: "00:00",
-    },
-    {
-      text: "A mundane decision that you need to take what book to read?",
-      time: "00:00",
-    },
-    {
-      text: "A mundane decision that you need to take what book to read?",
-      time: "00:00",
-    },
-    {
-      text: "A mundane decision that you need to take what book to read?",
-      time: "00:00",
-    },
-    {
-      text: "A mundane decision that you need to take what book to read?",
-      time: "00:00",
-    },
-    {
-      text: "A mundane decision that you need to take what book to read?",
-      time: "00:00",
-    },
-    {
-      text: "A mundane decision that you need to take what book to read?",
-      time: "00:00",
-    },
-  ];
+  const router = useRouter();
+
+  const { id } = router.query;
+
+  const { isPending: getVideoIsPending, data: video } = useQuery({
+    queryFn: () => getVideo({ videoId: id as string }),
+    queryKey: ["video", id],
+    enabled: !!id,
+  });
+
+  const { isPending: getTranscriptIsPending, data: transcript } = useQuery({
+    queryFn: () => getTranscript({ videoId: id as string }),
+    queryKey: ["transcript", id],
+    enabled: !!id,
+  });
+
+  if (!router.isReady) {
+    return (
+      <Center w={500} h={400}>
+        <Loader />
+      </Center>
+    );
+  }
+
   return (
     <Stack align="stretch" gap="md">
-      <Box style={{ aspectRatio: "16 / 9" }} w="100%">
-        <iframe
-          width="100%"
-          height="100%"
-          // src="https://www.youtube.com/embed/5M7GC7bWtA4"
-          src="https://www.youtube.com/embed/5M7GC7bWtA4"
-          title="Linguatube: Learn English while Watching Youtube"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        ></iframe>
+      <Box w="100%">
+        <YoutubePlayer youtubeId={video?.youtube_id ?? ""} ref={playerRef} />
       </Box>
       <ScrollArea
         h={{
@@ -77,7 +61,10 @@ export function VideoAndScript(props: Props) {
         }}
       >
         <Box pb="sm">
-          <Script scripts={scripts} />
+          <Script
+            scripts={transcript ?? []}
+            onSeekTo={(time) => playerRef.current?.seekTo(time)}
+          />
         </Box>
       </ScrollArea>
     </Stack>

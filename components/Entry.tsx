@@ -22,7 +22,6 @@ export function Entry(props: Props) {
 
     if (!youtubeId) {
       notifications.show({
-        title: "Error",
         message: "Invalid Youtube Url",
         color: "red",
       });
@@ -31,7 +30,6 @@ export function Entry(props: Props) {
     const data = await scrapMutate({ youtubeId });
     if (!data) {
       notifications.show({
-        title: "Error",
         message: "Something went wrong",
         color: "red",
       });
@@ -64,10 +62,6 @@ export function Entry(props: Props) {
         onPaste={(e) => {
           console.log(e);
           const url = e.clipboardData.getData("text/plain");
-          //   console.log(url);
-          //   console.log(e.currentTarget.value);
-          //   const foo = getYoutubeId(e.currentTarget.value);
-          //   console.log(foo);
           setYoutubeUrl(url);
           startLearning(url);
         }}
@@ -79,6 +73,7 @@ export function Entry(props: Props) {
         maw={200}
         w="100%"
         loading={scrapIsPending}
+        color="dark.4"
       >
         Learn
       </Button>

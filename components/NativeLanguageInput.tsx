@@ -4,7 +4,9 @@ import languages from "@/data/languages.json";
 type Props = SelectProps;
 export function NativeLanguageInput(props: Props) {
   const initLanguage = localStorage.getItem("linguatube.nativeLanguage");
-  const [language, setLanguage] = useState<string | null>(initLanguage);
+  const [language, setLanguage] = useState<string | null>(
+    initLanguage ?? "Indonesia (Indonesian)"
+  );
 
   const handleChange = (value: string | null) => {
     if (value) {
