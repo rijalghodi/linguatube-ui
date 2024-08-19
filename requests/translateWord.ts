@@ -23,7 +23,7 @@ export const translateWord = async ({
       },
     });
 
-    const result = (await JSON.parse(response.data.output)) as string;
+    const result = response.data.output;
     return result;
   } catch (err) {
     Promise.reject(err);

@@ -102,27 +102,19 @@ export function VocabInfo(props: Props) {
           <Text fw="bold" fz="md">
             Definition
           </Text>
-          <Text fz="md">
-            {wordInfoIsPending ? "Loading..." : wordInfo?.definition}
-          </Text>
+          <Text fz="md">{wordInfo?.definition}</Text>
           <Text fw="bold" fz="md" mt={6}>
-            Synonim
+            Synonym
           </Text>
-          <Text fz="md">
-            {wordInfoIsPending ? "Loading..." : wordInfo?.synonim}
-          </Text>
+          <Text fz="md">{wordInfo?.synonym}</Text>
           <Text fw="bold" fz="md" mt={6}>
             Usage
           </Text>
-          <Text fz="md">
-            {wordInfoIsPending ? "Loading..." : wordInfo?.usage}
-          </Text>
+          <Text fz="md">{wordInfo?.usage}</Text>
           <Text fw="bold" fz="md" mt={6}>
             Examples
           </Text>
-          <Text fz="md">
-            {wordInfoIsPending ? "Loading..." : wordInfo?.example?.join(", ")}
-          </Text>
+          <Text fz="md">{wordInfo?.example?.join(", ")}</Text>
         </Stack>
       )}
     </Stack>

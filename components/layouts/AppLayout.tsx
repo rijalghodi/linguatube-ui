@@ -65,7 +65,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                   })
                 }
               >
-                Dictionary
+                Your Vocabulary
               </Button>
               <Menu shadow="sm" width={140} position="bottom-end">
                 <Menu.Target>

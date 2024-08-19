@@ -7,6 +7,6 @@ export type Vocab = {
 export type WordInfo = {
   usage: string;
   definition?: string;
-  synonim?: string;
+  synonym?: string;
   example?: string[];
 };

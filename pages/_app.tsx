@@ -3,7 +3,7 @@ import "@/styles/global.css";
 import { MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
 import { theme } from "../theme";
-import { Source_Sans_3 } from "next/font/google";
+import { Fira_Sans, Montserrat, Source_Sans_3 } from "next/font/google";
 import { DefaultSeo } from "next-seo";
 import { defaultSeo } from "../next-seo.config";
 import { SettingModal } from "@/components/SettingModal";
@@ -14,7 +14,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
-const font = Source_Sans_3({
+const font = Fira_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
