@@ -1,7 +1,7 @@
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import "@/styles/global.css";
-import { MantineProvider } from "@mantine/core";
+import { MantineColorScheme, MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
 import { theme } from "../theme";
 import { Fira_Sans, Montserrat, Source_Sans_3 } from "next/font/google";
@@ -22,6 +22,7 @@ const font = Fira_Sans({
 });
 
 export default function App({ Component, pageProps }: any) {
+  const colorScheme = localStorage.getItem("linguatube.colorScheme");
   const getLayout = Component.getLayout ?? ((page: React.JSX.Element) => page);
   return (
     <>
@@ -29,7 +30,7 @@ export default function App({ Component, pageProps }: any) {
       <QueryClientProvider client={queryClient}>
         <div className={`${font.className}`}>
           <MantineProvider
-            defaultColorScheme="dark"
+            defaultColorScheme={(colorScheme as MantineColorScheme) ?? "dark"}
             theme={{ ...theme, fontFamily: font.style.fontFamily }}
           >
             <Notifications />
