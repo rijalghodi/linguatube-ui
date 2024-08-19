@@ -22,21 +22,14 @@ import { IconBubble, IconMessageCircle } from "@tabler/icons-react";
 import { OpenaiApiKeyInput } from "@/components";
 import { useRouter } from "next/router";
 import { NativeLanguageInput } from "./NativeLanguageInput";
+import { Entry } from "./Entry";
 
 type Props = {};
 
 export function Introduction({}: Props) {
-  const router = useRouter();
   const [demoOpened, { open: openDemo, close: closeDemo }] =
     useDisclosure(false);
 
-  const openLearningPage = () => {
-    // TODO: Open learning page with the provided Youtube video
-    router.push({
-      pathname: "/",
-      query: { id: "todo" },
-    });
-  };
   return (
     <Stack h="100%" gap={64} maw={800} px="md" mx="auto">
       <Stack align="center" component="section" gap={0}>
@@ -55,32 +48,9 @@ export function Introduction({}: Props) {
           videos
         </Text>
       </Stack>
-      <Stack component="section" maw={600} w="100%" mx="auto" align="center">
-        <Flex
-          direction={{ sm: "row", base: "column" }}
-          gap="sm"
-          justify="stretch"
-          w="100%"
-        >
-          <OpenaiApiKeyInput flex={1} />
-          <NativeLanguageInput flex={1} />
-        </Flex>
-        <TextInput
-          size="md"
-          placeholder="Paste a Youtube link here"
-          w="100%"
-          color="dark"
-        />
-        <Button
-          size="lg"
-          onClick={openLearningPage}
-          leftSection={<IconMessageCircle />}
-          maw={200}
-          w="100%"
-        >
-          Learn
-        </Button>
-      </Stack>
+      {/* ================== */}
+      <Entry />
+      {/* ================== */}
       <Stack align="center" component="section">
         <Title order={2} fz="h1">
           View Demo

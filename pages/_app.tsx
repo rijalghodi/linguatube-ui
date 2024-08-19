@@ -1,4 +1,5 @@
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 import "@/styles/global.css";
 import { MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
@@ -11,6 +12,7 @@ import { AboutModal } from "@/components/AboutModal";
 import { VocabBookModal } from "@/components/VocabBookModal";
 import { VocabInfoModal } from "@/components/VocabInfoModal";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Notifications } from "@mantine/notifications";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +31,7 @@ export default function App({ Component, pageProps }: any) {
           <MantineProvider
             theme={{ ...theme, fontFamily: font.style.fontFamily }}
           >
+            <Notifications />
             <ModalsProvider
               modals={{
                 setting: SettingModal,

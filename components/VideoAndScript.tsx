@@ -58,10 +58,11 @@ export function VideoAndScript(props: Props) {
         <iframe
           width="100%"
           height="100%"
+          // src="https://www.youtube.com/embed/5M7GC7bWtA4"
           src="https://www.youtube.com/embed/5M7GC7bWtA4"
-          title='ONE PIECE Teaser  "The Log of the Turbulent Revolution! The Revolutionary Army Maneuvers in Secret!"'
+          title="Linguatube: Learn English while Watching Youtube"
           frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
         ></iframe>
@@ -78,16 +79,6 @@ export function VideoAndScript(props: Props) {
         <Box pb="sm">
           <Script scripts={scripts} />
         </Box>
-        {/* <Stack align="stretch" pb="sm">
-          {scripts.map((script, i) => (
-            <Group gap="xs" key={i} wrap="nowrap" align="flex-start">
-              <ActionIcon size="md" color="red" variant="subtle" radius="xl">
-                <IconVolume2 size={16} />
-              </ActionIcon>
-              <Text component="p">{script.text}</Text>
-            </Group>
-          ))}
-        </Stack> */}
       </ScrollArea>
     </Stack>
   );

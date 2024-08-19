@@ -44,10 +44,12 @@ export function VocabInfo(props: Props) {
   const { isPending: wordInfoIsPending, mutateAsync: wordInfoMutate } =
     useMutation({
       mutationFn: invokeWordInfo,
+      mutationKey: ["word-info"],
     });
   const { isPending: translateIsPending, mutateAsync: traslateMutate } =
     useMutation({
       mutationFn: translateWord,
+      mutationKey: ["translate"],
     });
   const handleSearchWord = async () => {
     const translation = await traslateMutate({
