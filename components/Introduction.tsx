@@ -32,7 +32,7 @@ export function Introduction({}: Props) {
 
   return (
     <Stack h="100%" gap={80} maw={800} px="md" mx="auto">
-      <Stack align="center" component="section" gap={0}>
+      <Stack align="center" component="section" gap="lg" py="xl">
         <Title
           order={1}
           fz={{ base: 40, xs: 48 }}
@@ -40,7 +40,7 @@ export function Introduction({}: Props) {
           ta="center"
           maw={540}
         >
-          Learn English through watching YouTube
+          Learn english through watching YouTube
         </Title>
         <Text
           component="p"

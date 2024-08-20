@@ -22,17 +22,22 @@ export function AppWorkspace(props: Props) {
       maw={1200}
       px="lg"
       pb="md"
+      pt="sm"
     >
-      <Group align="flex-start" justify="center" h="100%" gap="xl">
+      <Group align="stretch" justify="center" h="100%" gap="xl">
         <Box flex={{ base: 1, sm: 2 }} maw={640}>
           <VideoAndScript />
         </Box>
         <Box
-          pos={{ base: "absolute", sm: "static" }}
-          bottom={16}
-          right={24}
-          style={{ zIndex: 20 }}
+          pos={{ base: "fixed", sm: "static" }}
+          bottom={0}
+          right={0}
+          top={0}
+          left={0}
+          style={{ zIndex: 100, display: "flex", alignItems: "stretch" }}
           hidden={!chatOpened}
+          h={{ base: "100vh", sm: "auto" }}
+          w={{ base: "100vw", sm: 400 }}
         >
           <Chat onCloseChat={closeChat} />
         </Box>

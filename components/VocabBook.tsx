@@ -1,5 +1,5 @@
 import { Vocab } from "@/types/vocab";
-import { Stack, Text, Table, TableData } from "@mantine/core";
+import { Stack, Text, Table, TableData, ScrollArea } from "@mantine/core";
 import React from "react";
 type Props = {};
 export function VocabBook(props: Props) {
@@ -8,16 +8,24 @@ export function VocabBook(props: Props) {
     ? (JSON.parse(vocabString) as Vocab[])
     : ([] as Vocab[]);
   const tableData: TableData = {
-    head: ["Word", "Meaning", "Example"],
-    body: vocab.map((v) => [v.word, v.meaning, v.sentence]),
+    head: ["Word", "Meaning", "Example", "Source"],
+    body: vocab.map((v) => [v.word, v.meaning, v.sentence, v.source]),
   };
 
   return (
     <Stack>
-      <Table data={tableData} stickyHeader stickyHeaderOffset={60} striped />
+      <ScrollArea.Autosize w="100%" h={500}>
+        <Table
+          data={tableData}
+          stickyHeader
+          stickyHeaderOffset={60}
+          striped
+          fz="md"
+        />
+      </ScrollArea.Autosize>
       {tableData.body?.length === 0 && (
         <Text py="lg" ta="center">
-          No vocabulary entries found
+          You have not added any vocabulary yet.
         </Text>
       )}
     </Stack>

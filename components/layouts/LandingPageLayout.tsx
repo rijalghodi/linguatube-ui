@@ -35,7 +35,7 @@ export function LandingPageLayout({ children }: { children: React.ReactNode }) {
           <ActionIcon
             component={Link}
             href="https://github.com/rijalghodi/linguatube-ui"
-            color="dark"
+            color="gray"
             variant="subtle"
           >
             <IconBrandGithub size={18} />

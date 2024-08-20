@@ -52,8 +52,13 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         height: 60,
       }}
       footer={{ height: "auto" }}
+      bg={colorScheme === "light" ? "#f7f7f7" : "#202020"}
     >
-      <AppShell.Header py="sm" withBorder={false}>
+      <AppShell.Header
+        py="sm"
+        withBorder={false}
+        bg={colorScheme === "light" ? "#f7f7f7" : "#202020"}
+      >
         <Container maw={800}>
           <Group
             h="100%"
@@ -77,7 +82,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                     modal: "vocab-book",
                     innerProps: {},
                     title: "Vocabulary",
-                    size: "xl",
+                    size: 1200,
                   })
                 }
               >
@@ -85,8 +90,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
               </Button>
               <Menu shadow="sm" width={140} position="bottom-end">
                 <Menu.Target>
-                  <ActionIcon variant="subtle" color="dark" size="lg">
-                    <IconMenu4 size={22} />
+                  <ActionIcon variant="subtle" color="gray" size="lg">
+                    <IconMenu4 size={24} />
                   </ActionIcon>
                 </Menu.Target>
                 <Menu.Dropdown>

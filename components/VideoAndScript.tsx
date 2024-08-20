@@ -38,7 +38,7 @@ export function VideoAndScript(props: Props) {
     enabled: !!id,
   });
 
-  if (!router.isReady) {
+  if (!router.isReady || getTranscriptIsPending || getVideoIsPending) {
     return (
       <Center w={500} h={400}>
         <Loader />
