@@ -17,7 +17,6 @@ export function ColorSchemeInput(props: Props) {
     <Select
       label="Theme"
       placeholder="Select theme"
-      searchable
       miw={250}
       data={[
         { value: "dark", label: "Dark" },

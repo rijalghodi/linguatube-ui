@@ -31,26 +31,31 @@ export function Introduction({}: Props) {
     useDisclosure(false);
 
   return (
-    <Stack h="100%" gap={64} maw={800} px="md" mx="auto">
+    <Stack h="100%" gap={80} maw={800} px="md" mx="auto">
       <Stack align="center" component="section" gap={0}>
-        <Title order={1} fz={48} py="sm" ta="center" maw={540}>
-          Learn English while Watching Youtube
+        <Title
+          order={1}
+          fz={{ base: 40, xs: 48 }}
+          py="md"
+          ta="center"
+          maw={540}
+        >
+          Learn English through watching YouTube
         </Title>
         <Text
           component="p"
-          fz="h3"
+          fz={{ base: "h4", xs: "h3" }}
           c="var(--mantine-color-dimmed)"
           ta="center"
           mb="xl"
           maw={540}
         >
-          Linguatube will help you understand english through watching youtube
-          videos
+          Learn and enjoy english with fun and abundant resources
         </Text>
+        {/* ================== */}
+        <Entry />
+        {/* ================== */}
       </Stack>
-      {/* ================== */}
-      <Entry />
-      {/* ================== */}
       <Stack align="center" component="section">
         <Title order={2} fz="h1">
           View Demo

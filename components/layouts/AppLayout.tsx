@@ -42,7 +42,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const initCs = localStorage.getItem("linguatube.colorScheme");
-    setColorScheme((initCs as MantineColorScheme) ?? "dark");
+    if (!initCs) localStorage.setItem("linguatube.colorScheme", "light");
+    setColorScheme((initCs as MantineColorScheme) ?? "light");
   }, [setColorScheme]);
   return (
     <AppShell
@@ -52,18 +53,24 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       }}
       footer={{ height: "auto" }}
     >
-      <AppShell.Header py="sm" px="md" withBorder={false}>
+      <AppShell.Header py="sm" withBorder={false}>
         <Container maw={800}>
-          <Group h="100%" gap="xl" w="100%" justify="space-between">
+          <Group
+            h="100%"
+            gap="sm"
+            w="100%"
+            justify="space-between"
+            wrap="nowrap"
+          >
             <Group gap="xs">
               <Image src={logo} alt="Logo" width={36} height={36} />
-              <Text fz="xl" fw="bold">
+              <Text fz={{ base: "md", sm: "xl" }} fw="bold">
                 Linguatube
               </Text>
             </Group>
-            <Group gap="md">
+            <Group gap="xs">
               <Button
-                variant="subtle"
+                variant="default"
                 color={colorScheme === "dark" ? "gray" : "dark"}
                 onClick={() =>
                   modals.openContextModal({
@@ -74,7 +81,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                   })
                 }
               >
-                Your Vocabulary
+                Vocabulary
               </Button>
               <Menu shadow="sm" width={140} position="bottom-end">
                 <Menu.Target>

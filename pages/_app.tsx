@@ -29,10 +29,18 @@ export default function App({ Component, pageProps }: any) {
       <QueryClientProvider client={queryClient}>
         <div className={`${font.className}`}>
           <MantineProvider
-            defaultColorScheme={"dark"}
+            defaultColorScheme={"light"}
             theme={{ ...theme, fontFamily: font.style.fontFamily }}
           >
-            <Notifications />
+            <Notifications
+              position="bottom-center"
+              styles={{
+                notification: {
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset",
+                },
+              }}
+            />
             <ModalsProvider
               modals={{
                 setting: SettingModal,
