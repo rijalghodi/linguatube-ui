@@ -34,7 +34,7 @@ export function AppWorkspace(props: Props) {
           right={0}
           top={0}
           left={0}
-          style={{ zIndex: 100, display: "flex", alignItems: "stretch" }}
+          style={{ zIndex: 100}}
           hidden={!chatOpened}
           h={{ base: "100vh", sm: "auto" }}
           w={{ base: "100vw", sm: 400 }}

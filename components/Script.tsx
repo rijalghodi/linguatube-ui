@@ -111,8 +111,7 @@ export function Script(props: Props) {
           <Tooltip label="Word Information" withArrow>
             <ActionIcon
               size="lg"
-              color="dark"
-              variant="default"
+              variant="white"
               radius="xl"
               styles={{
                 root: {

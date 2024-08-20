@@ -82,7 +82,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                     modal: "vocab-book",
                     innerProps: {},
                     title: "Vocabulary",
-                    size: 1200,
+                    size: 1000,
                   })
                 }
               >

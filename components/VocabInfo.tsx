@@ -10,7 +10,10 @@ import {
   Group,
   Box,
   Loader,
+  List,
+  useMantineColorScheme,
 } from "@mantine/core";
+import { useColorScheme } from "@mantine/hooks";
 import { useMutation } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 type Props = {
@@ -21,6 +24,7 @@ type Props = {
 };
 
 export function VocabInfo(props: Props) {
+  const { colorScheme } = useMantineColorScheme();
   const [word, setWord] = useState<string>(props.word);
   const [meaning, setMeaning] = useState<string>(props.meaning ?? "");
   const [sentence, setSentence] = useState<string>(props.sentence ?? "");
@@ -57,9 +61,9 @@ export function VocabInfo(props: Props) {
       sentence,
       nativeLanguage: nativeLanguage ?? undefined,
     });
+    if (translation) setMeaning(translation);
     const wordInfo = await wordInfoMutate({ word, sentence });
     if (wordInfo) setWordInfo(wordInfo);
-    if (translation) setMeaning(translation);
   };
 
   useEffect(() => {
@@ -90,7 +94,11 @@ export function VocabInfo(props: Props) {
         />
       </Stack>
       <Group justify="center" w="100%" mt="sm">
-        <Button size="md" onClick={handleSaveVocab}>
+        <Button
+          size="md"
+          variant={colorScheme === "dark" ? "white" : "filled"}
+          onClick={handleSaveVocab}
+        >
           Save Vocab
         </Button>
       </Group>
@@ -99,7 +107,7 @@ export function VocabInfo(props: Props) {
           <Loader size="md" />
           <Text fz="sm">Loading word info...</Text>
         </Stack>
-      ) : (
+      ) : !wordInfo ? null : (
         <Stack gap={6}>
           <Text fw="bold" fz="md">
             Definition
@@ -116,7 +124,11 @@ export function VocabInfo(props: Props) {
           <Text fw="bold" fz="md" mt={6}>
             Examples
           </Text>
-          <Text fz="md">{wordInfo?.example?.join(", ")}</Text>
+          <List>
+            {wordInfo?.example?.map((example, index) => (
+              <List.Item key={index}>{example}</List.Item>
+            ))}
+          </List>
         </Stack>
       )}
     </Stack>
