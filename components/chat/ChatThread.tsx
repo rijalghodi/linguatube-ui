@@ -46,6 +46,7 @@ export function ChatThread(props: Props) {
   const { data: lastMessages, isPending: lastMessagesInPending } = useQuery({
     queryKey: ["thread", props.threadId],
     queryFn: () => listThreadMessage({ threadId: props.threadId }),
+    enabled: !!props.threadId,
   });
 
   console.log(messages);
@@ -164,9 +165,11 @@ export function ChatThread(props: Props) {
       {!lastMessages ||
         !lastMessages.data ||
         (lastMessages.data.length === 0 && (
-          <Text fz="sm" ta="center">
-            No messages yet
-          </Text>
+          <Center w="100%" h="100%">
+            <Text fz="lg" ta="center">
+              Start chatting!
+            </Text>
+          </Center>
         ))}
       <ScrollArea
         h={{

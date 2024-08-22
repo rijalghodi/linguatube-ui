@@ -15,9 +15,10 @@ type ListThreadMessageResponse = {
 export const listThreadMessage = async ({
   threadId,
 }: ListThreadMessageRequest) => {
+  const apiKey = localStorage.getItem("linguatube.openaiApiKey");
   try {
     const response = await axiosInstance.get<ListThreadMessageResponse>(
-      `/thread/${threadId}/message`
+      `/thread/${threadId}/message?api_key=${apiKey}`
     );
 
     const result = response.data;

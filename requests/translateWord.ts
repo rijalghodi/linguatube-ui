@@ -5,7 +5,9 @@ type Request = {
   word: string;
   sentence?: string;
   nativeLanguage?: string;
+  apiKey: string;
 };
+
 type Response = {
   output: string;
 };
@@ -14,13 +16,14 @@ export const translateWord = async ({
   sentence = "",
   nativeLanguage = "English",
 }: Request) => {
+  const apiKey = localStorage.getItem("linguatube.openaiApiKey");
+
   try {
-    const response = await axiosInstance.post<Response>("/translate/invoke", {
-      input: {
-        word,
-        sentence,
-        language: nativeLanguage,
-      },
+    const response = await axiosInstance.post<Response>("/translate/", {
+      word,
+      sentence,
+      language: nativeLanguage,
+      api_key: apiKey,
     });
 
     const result = response.data.output;

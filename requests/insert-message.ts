@@ -15,6 +15,8 @@ export const insertMessage = async ({
   videoId,
   content,
 }: InsertMessageRequest) => {
+  const apiKey = localStorage.getItem("linguatube.openaiApiKey");
+
   try {
     const response = await axiosInstance.post<InsertMessageResponse>(
       `video/${videoId}/thread/${threadId}`,
@@ -22,6 +24,7 @@ export const insertMessage = async ({
         threadId,
         content,
         role: "human",
+        api_key: apiKey,
       }
     );
 

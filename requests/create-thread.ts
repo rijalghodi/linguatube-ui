@@ -20,12 +20,14 @@ export const createThread = async ({
   mode,
   videoId,
 }: CreateThreadRequest) => {
+  const apiKey = localStorage.getItem("linguatube.openaiApiKey");
   try {
     const response = await axiosInstance.post<CreateThreadResponse>(
       `/video/${videoId}/thread`,
       {
         title,
         mode,
+        api_key: apiKey,
       }
     );
 
