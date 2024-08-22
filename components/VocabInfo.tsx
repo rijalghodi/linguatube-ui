@@ -104,7 +104,7 @@ export function VocabInfo(props: Props) {
       </Group>
       {wordInfoIsPending ? (
         <Stack h={200} align="center" justify="center">
-          <Loader size="md" />
+          <Loader color="gray" size="md" />
           <Text fz="sm">Loading word info...</Text>
         </Stack>
       ) : !wordInfo ? null : (

@@ -31,20 +31,24 @@ import {
   IconTrash,
 } from "@tabler/icons-react";
 import styles from "@/styles/component.module.css";
-import { SettingModal } from "../SettingModal";
 import { modals } from "@mantine/modals";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { colorScheme, setColorScheme } = useMantineColorScheme();
 
-  useEffect(() => {
+  const setColorSchemeFromLocalStorage = () => {
     const initCs = localStorage.getItem("linguatube.colorScheme");
-    if (!initCs) localStorage.setItem("linguatube.colorScheme", "light");
     setColorScheme((initCs as MantineColorScheme) ?? "light");
-  }, [setColorScheme]);
+    if (!initCs) localStorage.setItem("linguatube.colorScheme", "light");
+  };
+
+  useEffect(() => {
+    setColorSchemeFromLocalStorage();
+  }, []);
+
   return (
     <AppShell
       layout="alt"
@@ -52,12 +56,14 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         height: 60,
       }}
       footer={{ height: "auto" }}
-      bg={colorScheme === "light" ? "#f7f7f7" : "#202020"}
+      // bg={colorScheme === "light" ? "#f7f7f7" : "#212121"}
+      // bg="var(--mantine-color-dark-filled)"
     >
       <AppShell.Header
         py="sm"
         withBorder={false}
-        bg={colorScheme === "light" ? "#f7f7f7" : "#202020"}
+        // bg={colorScheme === "light" ? "#f7f7f7" : "#212121"}
+        // bg="var(--mantine-color-dark-filled)"
       >
         <Container maw={800}>
           <Group

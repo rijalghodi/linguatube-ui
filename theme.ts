@@ -1,4 +1,4 @@
-import { createTheme, Modal, NavLink } from "@mantine/core";
+import { createTheme, Loader, Modal, NavLink } from "@mantine/core";
 
 export const theme = createTheme({
   /* Put your mantine theme override here */
@@ -17,6 +17,13 @@ export const theme = createTheme({
         title: {
           fontSize: theme.fontSizes.xl,
           fontWeight: 700,
+        },
+      }),
+    }),
+    Loader: Loader.extend({
+      styles: (theme) => ({
+        root: {
+          color: "red",
         },
       }),
     }),

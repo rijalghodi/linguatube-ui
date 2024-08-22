@@ -38,13 +38,11 @@ export function Script(props: Props) {
     string | null
   >(null);
   const [selectedFullWord, setSelectedFullWord] = useState<string | null>(null);
-  console.log(props.scripts);
 
   useEffect(() => {
     const handleMouseUp = () => {
       const selection = window.getSelection();
       const containerPos = containerRef.current?.getBoundingClientRect();
-      console.log(containerPos, "con");
 
       if (
         selection &&
@@ -55,8 +53,6 @@ export function Script(props: Props) {
         const fullWord = getFullWordFromSelection(selection);
         const fullSentence = getFullSentenceFromSelection(selection);
         const selectionPos = getSelectionPosition(selection);
-        console.log(selectionPos, "sele");
-        console.log(selection.rangeCount, "range count");
 
         if (fullWord) setSelectedFullWord(fullWord);
         if (fullSentence) setSelectedFullSentence(fullSentence);
@@ -67,7 +63,6 @@ export function Script(props: Props) {
             right: containerPos.right - selectionPos.right,
           });
         }
-        console.log(fullWord);
         return;
       }
 
@@ -92,7 +87,6 @@ export function Script(props: Props) {
             variant="subtle"
             radius="xl"
             onClick={() => {
-              console.log(timestampToSeconds(script.timestamp));
               props.onSeekTo?.(timestampToSeconds(script.timestamp));
             }}
           >

@@ -8,7 +8,7 @@ import {
   IconMessageCircle,
   IconX,
 } from "@tabler/icons-react";
-import { Chat } from "./Chat";
+import { ChatWrapper } from "./chat/ChatWrapper";
 import { useDisclosure } from "@mantine/hooks";
 type Props = {};
 export function AppWorkspace(props: Props) {
@@ -17,14 +17,14 @@ export function AppWorkspace(props: Props) {
   return (
     <Container
       w="100%"
-      pos="relative"
-      h="calc(100vh - 60px)"
+      h="calc(100vh - 60px - 20px)"
       maw={1200}
       px="lg"
       pb="md"
       pt="sm"
+      pos="relative"
     >
-      <Group align="stretch" justify="center" h="100%" gap="xl">
+      <Group align="stretch" justify="center" gap="xl">
         <Box flex={{ base: 1, sm: 2 }} maw={640}>
           <VideoAndScript />
         </Box>
@@ -34,12 +34,12 @@ export function AppWorkspace(props: Props) {
           right={0}
           top={0}
           left={0}
-          style={{ zIndex: 100}}
+          style={{ zIndex: 100 }}
           hidden={!chatOpened}
           h={{ base: "100vh", sm: "auto" }}
-          w={{ base: "100vw", sm: 400 }}
+          w={{ base: "100vw", sm: 460 }}
         >
-          <Chat onCloseChat={closeChat} />
+          <ChatWrapper onCloseChat={closeChat} />
         </Box>
       </Group>
       <Group

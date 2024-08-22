@@ -60,7 +60,6 @@ export function Entry(props: Props) {
         value={youtubeUrl}
         onChange={(e) => setYoutubeUrl(e.target.value)}
         onPaste={(e) => {
-          console.log(e);
           const url = e.clipboardData.getData("text/plain");
           setYoutubeUrl(url);
           startLearning(url);

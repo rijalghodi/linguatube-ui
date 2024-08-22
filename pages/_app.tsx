@@ -29,7 +29,6 @@ export default function App({ Component, pageProps }: any) {
       <QueryClientProvider client={queryClient}>
         <div className={`${font.className}`}>
           <MantineProvider
-            defaultColorScheme={"light"}
             theme={{ ...theme, fontFamily: font.style.fontFamily }}
           >
             <Notifications
