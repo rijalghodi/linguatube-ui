@@ -39,15 +39,11 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { colorScheme, setColorScheme } = useMantineColorScheme();
 
-  const setColorSchemeFromLocalStorage = () => {
+  useEffect(() => {
     const initCs = localStorage.getItem("linguatube.colorScheme");
     setColorScheme((initCs as MantineColorScheme) ?? "light");
     if (!initCs) localStorage.setItem("linguatube.colorScheme", "light");
-  };
-
-  useEffect(() => {
-    setColorSchemeFromLocalStorage();
-  }, []);
+  }, [setColorScheme]);
 
   return (
     <AppShell

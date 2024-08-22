@@ -5,7 +5,6 @@ type Request = {
   word: string;
   sentence?: string;
   nativeLanguage?: string;
-  apiKey: string;
 };
 
 type Response = {
