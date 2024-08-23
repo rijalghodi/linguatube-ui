@@ -15,7 +15,7 @@ import { IconSend } from "@tabler/icons-react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Markdown from "markdown-to-jsx";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 type Message = {
   role?: string;
@@ -30,6 +30,14 @@ export function ChatThread(props: Props) {
   const { id } = useRouter().query;
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
+
+  const viewport = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () =>
+    viewport.current!.scrollTo({
+      top: viewport.current!.scrollHeight,
+      behavior: "smooth",
+    });
 
   useEffect(() => {
     setMessages([]);
@@ -60,6 +68,8 @@ export function ChatThread(props: Props) {
   // ================= Send message ========================
 
   const handleSendMessage = async () => {
+    scrollToBottom();
+
     if (input.trim() === "") return;
 
     const userMessage = { role: "human", content: input };
@@ -177,6 +187,7 @@ export function ChatThread(props: Props) {
           sm: "calc(100vh -  60px - 100px)",
         }}
         scrollbarSize={6}
+        viewportRef={viewport}
       >
         <Stack gap={8} py="sm" px="md" pb={220}>
           {messages.map((chat, i) =>

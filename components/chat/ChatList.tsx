@@ -13,6 +13,7 @@ import {
 import { IconBolt, IconMessage, IconMessage2 } from "@tabler/icons-react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
+import { useRef } from "react";
 
 type Chat = {
   thread_id: string;
@@ -27,6 +28,14 @@ export function ChatList(props: Props) {
   const { id } = router.query;
   const queryClient = useQueryClient();
 
+  const viewport = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () =>
+    viewport.current!.scrollTo({
+      top: viewport.current!.scrollHeight,
+      behavior: "smooth",
+    });
+
   const { isPending: listThreadPending, data: threads } = useQuery({
     queryFn: () => listThread({ videoId: id as string }),
     queryKey: ["list-thread", id],
@@ -38,6 +47,7 @@ export function ChatList(props: Props) {
       mutationFn: createThread,
       mutationKey: ["create-thread"],
       onSuccess: async () => {
+        scrollToBottom();
         await queryClient.invalidateQueries({
           queryKey: ["list-thread", id],
           refetchType: "active",
@@ -56,7 +66,7 @@ export function ChatList(props: Props) {
   if (!threads?.count || threads.count === 0)
     return (
       <Center h="100%" w="100%">
-        {createThreadIsPending ? (
+        {createThreadIsPending || listThreadPending ? (
           <Loader color="gray" />
         ) : (
           <Box>
@@ -91,6 +101,7 @@ export function ChatList(props: Props) {
         sm: "calc(100vh -  60px - 80px)",
       }}
       scrollbarSize={6}
+      viewportRef={viewport}
     >
       <Stack gap={0} align="stretch" px="xs" py="xs">
         {threads.data.map((chat, i) => (
