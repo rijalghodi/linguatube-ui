@@ -22,6 +22,7 @@ type Chat = {
 };
 type Props = {
   onSelectChat: (chat: Chat) => void;
+  onSuccessCreateChat: (chat: Chat) => void;
 };
 export function ChatList(props: Props) {
   const router = useRouter();
@@ -31,8 +32,8 @@ export function ChatList(props: Props) {
   const viewport = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () =>
-    viewport.current!.scrollTo({
-      top: viewport.current!.scrollHeight,
+    viewport.current?.scrollTo({
+      top: viewport.current?.scrollHeight,
       behavior: "smooth",
     });
 
@@ -46,19 +47,25 @@ export function ChatList(props: Props) {
     useMutation({
       mutationFn: createThread,
       mutationKey: ["create-thread"],
-      onSuccess: async () => {
+      onSuccess: (data) => {
+        console.log(data, "1200002");
         scrollToBottom();
-        await queryClient.invalidateQueries({
+        props.onSuccessCreateChat({
+          mode: data?.mode ?? "chat",
+          thread_id: data?.thread_id as string,
+          title: data?.title as string,
+        });
+        queryClient.invalidateQueries({
           queryKey: ["list-thread", id],
           refetchType: "active",
         });
       },
     });
 
-  const handleCreateThread = async () => {
+  const handleCreateThread = async (mode: string) => {
     await createThreadMutate({
       videoId: id as string,
-      mode: "chat",
+      mode,
       title: "",
     });
   };
@@ -77,7 +84,7 @@ export function ChatList(props: Props) {
               <Button
                 leftSection={<IconMessage2 size={16} />}
                 variant="default"
-                onClick={handleCreateThread}
+                onClick={() => handleCreateThread("chat")}
               >
                 Just Chat
               </Button>
@@ -85,6 +92,7 @@ export function ChatList(props: Props) {
                 leftSection={<IconBolt size={16} />}
                 variant="filled"
                 color="orange"
+                onClick={() => handleCreateThread("practice")}
               >
                 Practice
               </Button>

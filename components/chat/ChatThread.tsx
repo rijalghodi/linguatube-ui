@@ -27,6 +27,7 @@ type Props = {
   loading?: boolean;
 };
 export function ChatThread(props: Props) {
+  console.log(props.threadId, "13");
   const { id } = useRouter().query;
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -56,8 +57,6 @@ export function ChatThread(props: Props) {
     queryFn: () => listThreadMessage({ threadId: props.threadId }),
     enabled: !!props.threadId,
   });
-
-  console.log(messages);
 
   useEffect(() => {
     if (lastMessages?.data) {

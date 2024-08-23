@@ -18,7 +18,7 @@ import {
   IconMenu2,
   IconPlus,
 } from "@tabler/icons-react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -29,6 +29,7 @@ type Props = {
   onCloseChat?: () => void;
 };
 export function ChatWrapper(props: Props) {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const { id } = router.query;
   // const [tabValue, setTabValue] = useState("history");
@@ -38,17 +39,26 @@ export function ChatWrapper(props: Props) {
     useMutation({
       mutationFn: createThread,
       mutationKey: ["create-thread"],
-      onSuccess: async (data) => {
-        setThreadId(data?.id as string);
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: ["list-thread", id],
+        });
       },
     });
 
+  console.log("thread Id", threadId);
+
   const handleCreateThread = async (mode: "chat" | "practice") => {
-    await createThreadMutate({
+    const data = await createThreadMutate({
       videoId: id as string,
       mode,
       title: "",
     });
+
+    if (data?.thread_id) {
+      setThreadId(data?.thread_id);
+      
+    }
   };
 
   return (
@@ -142,6 +152,7 @@ export function ChatWrapper(props: Props) {
           h="100%"
           w="100%"
           value={(threadId as string) ? "chat" : "history"}
+          // value="chat"
           p={0}
           styles={{
             panel: {
@@ -165,6 +176,7 @@ export function ChatWrapper(props: Props) {
               </Center>
             ) : (
               <ChatList
+                onSuccessCreateChat={(chat) => setThreadId(chat.thread_id)}
                 onSelectChat={(chat) => {
                   setThreadId(chat.thread_id);
                 }}
