@@ -1,6 +1,6 @@
 import { ActionIcon, Box, Container, Group, Tooltip } from "@mantine/core";
 import React from "react";
-import { VideoAndScript } from "./VideoAndScript";
+import { VideoAndScript } from "./video-and-scripts/VideoAndScript";
 import {
   IconBook2,
   IconCancel,

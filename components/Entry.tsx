@@ -1,7 +1,7 @@
 import { Button, Flex, Stack, TextInput } from "@mantine/core";
 import React, { useState } from "react";
-import { OpenaiApiKeyInput } from "./OpenaiApiKeyInput";
-import { NativeLanguageInput } from "./NativeLanguageInput";
+import { OpenaiApiKeyInput } from "./settings/OpenaiApiKeyInput";
+import { NativeLanguageInput } from "./settings/NativeLanguageInput";
 import { IconMessageCircle } from "@tabler/icons-react";
 import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";

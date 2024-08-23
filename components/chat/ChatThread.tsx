@@ -5,6 +5,7 @@ import {
   ActionIcon,
   Box,
   Center,
+  Group,
   Loader,
   Paper,
   ScrollArea,
@@ -202,9 +203,12 @@ export function ChatThread(props: Props) {
             )
           )}
           {botIsGenerating && (
-            <Text c="var(--mantine-color-default-border)">
-              Assistant is writing...
-            </Text>
+            <Group gap="sm">
+              <Loader size={16} color="gray" type="dots" />
+              <Text c="var(--mantine-color-default-border)">
+                Assistant is writing...
+              </Text>
+            </Group>
           )}
         </Stack>
       </ScrollArea>

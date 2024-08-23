@@ -41,7 +41,7 @@ export function VideoAndScript(props: Props) {
   if (!router.isReady || getTranscriptIsPending || getVideoIsPending) {
     return (
       <Center w={500} h={400}>
-        <Loader color="gray"/>
+        <Loader color="gray" />
       </Center>
     );
   }

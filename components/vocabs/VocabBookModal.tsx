@@ -1,6 +1,6 @@
 import { Modal, ModalProps, Select, Stack } from "@mantine/core";
 import React from "react";
-import { OpenaiApiKeyInput } from "./OpenaiApiKeyInput";
+import { OpenaiApiKeyInput } from "../settings/OpenaiApiKeyInput";
 import { Button, Text } from "@mantine/core";
 import { ContextModalProps, ModalsProvider } from "@mantine/modals";
 import { VocabBook } from "./VocabBook";

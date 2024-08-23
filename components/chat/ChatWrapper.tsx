@@ -45,11 +45,10 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { listThread } from "@/requests/list-thread";
 import { useRouter } from "next/router";
 import { createThread } from "@/requests/create-thread";
+import { VectorDbMasker } from "./VectoDbMasker";
 export function ChatWrapper(props: Props) {
   const router = useRouter();
   const { id } = router.query;
-  const queryClient = useQueryClient();
-
   // const [tabValue, setTabValue] = useState("history");
   const [threadId, setThreadId] = useState("");
 
@@ -88,108 +87,110 @@ export function ChatWrapper(props: Props) {
         },
       }}
     >
-      <Group
-        justify="space-between"
-        px="sm"
-        py="sm"
-        style={{
-          borderBottom: "1px solid var(--mantine-color-default-border)",
-        }}
-      >
-        <Group gap={4}>
-          <Image
-            src={logo}
-            alt="logo"
-            width={28}
-            height={28}
-            objectFit="cover"
-          />
-          <Text fz="lg" fw={600}>
-            Chat Assistant
-          </Text>
-        </Group>
-        <Group gap="sm">
-          <Menu shadow="xl" position="bottom-end">
-            <Menu.Target>
-              <ActionIcon size="lg" color="gray" variant="subtle">
-                <IconMenu2 size={16} />
-              </ActionIcon>
-            </Menu.Target>
-            <Menu.Dropdown>
-              <Menu.Item
-                leftSection={<IconPlus size={16} />}
-                onClick={() => {
-                  handleCreateThread("chat");
-                }}
-              >
-                New Chat
-              </Menu.Item>
-              <Menu.Item
-                leftSection={<IconBolt size={16} />}
-                onClick={() => {
-                  handleCreateThread("practice");
-                }}
-              >
-                New Practice
-              </Menu.Item>
-              <Menu.Item
-                leftSection={<IconHistory size={16} />}
-                onClick={() => {
-                  setThreadId("");
-                }}
-              >
-                Chat History
-              </Menu.Item>
-            </Menu.Dropdown>
-          </Menu>
-          <Tooltip label="Close chat" withArrow>
-            <ActionIcon
-              size="lg"
-              color="gray"
-              variant="subtle"
-              onClick={props.onCloseChat}
-            >
-              <IconChevronDown size={16} />
-            </ActionIcon>
-          </Tooltip>
-        </Group>
-      </Group>
-      
-      <Tabs
-        style={{ flex: 1, display: "flex", alignItems: "stretch" }}
-        h="100%"
-        w="100%"
-        value={(threadId as string) ? "chat" : "history"}
-        p={0}
-        styles={{
-          panel: {
-            paddingBottom: 0,
-            display: "flex",
-            flexDirection: "column",
-          },
-        }}
-        keepMounted={false}
-      >
-        <Tabs.Panel value="chat" h="100%" flex={1} p={0}>
-          <ChatThread
-            threadId={threadId as string}
-            loading={createThreadIsPending}
-          />
-        </Tabs.Panel>
-        <Tabs.Panel value="history" flex={1}>
-          {createThreadIsPending ? (
-            <Center w="100%" h="100%">
-              <Loader color="gray" />
-            </Center>
-          ) : (
-            <ChatList
-              onSelectChat={(chat) => {
-                setThreadId(chat.thread_id);
-              }}
+      <VectorDbMasker onCloseChat={props.onCloseChat}>
+        <Group
+          justify="space-between"
+          px="sm"
+          py="sm"
+          style={{
+            borderBottom: "1px solid var(--mantine-color-default-border)",
+          }}
+        >
+          <Group gap={4}>
+            <Image
+              src={logo}
+              alt="logo"
+              width={28}
+              height={28}
+              objectFit="cover"
             />
-          )}
-        </Tabs.Panel>
-      </Tabs>
+            <Text fz="lg" fw={600}>
+              Chat Assistant
+            </Text>
+          </Group>
+          <Group gap="sm">
+            <Menu shadow="xl" position="bottom-end">
+              <Menu.Target>
+                <ActionIcon size="lg" color="gray" variant="subtle">
+                  <IconMenu2 size={16} />
+                </ActionIcon>
+              </Menu.Target>
+              <Menu.Dropdown>
+                <Menu.Item
+                  leftSection={<IconPlus size={16} />}
+                  onClick={() => {
+                    handleCreateThread("chat");
+                  }}
+                >
+                  New Chat
+                </Menu.Item>
+                <Menu.Item
+                  leftSection={<IconBolt size={16} />}
+                  onClick={() => {
+                    handleCreateThread("practice");
+                  }}
+                >
+                  New Practice
+                </Menu.Item>
+                <Menu.Item
+                  leftSection={<IconHistory size={16} />}
+                  onClick={() => {
+                    setThreadId("");
+                  }}
+                >
+                  Chat History
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
+            <Tooltip label="Close chat" withArrow>
+              <ActionIcon
+                size="lg"
+                color="gray"
+                variant="subtle"
+                onClick={props.onCloseChat}
+              >
+                <IconChevronDown size={16} />
+              </ActionIcon>
+            </Tooltip>
+          </Group>
+        </Group>
+
+        <Tabs
+          style={{ flex: 1, display: "flex", alignItems: "stretch" }}
+          h="100%"
+          w="100%"
+          value={(threadId as string) ? "chat" : "history"}
+          p={0}
+          styles={{
+            panel: {
+              paddingBottom: 0,
+              display: "flex",
+              flexDirection: "column",
+            },
+          }}
+          keepMounted={false}
+        >
+          <Tabs.Panel value="chat" h="100%" flex={1} p={0}>
+            <ChatThread
+              threadId={threadId as string}
+              loading={createThreadIsPending}
+            />
+          </Tabs.Panel>
+          <Tabs.Panel value="history" flex={1}>
+            {createThreadIsPending ? (
+              <Center w="100%" h="100%">
+                <Loader color="gray" />
+              </Center>
+            ) : (
+              <ChatList
+                onSelectChat={(chat) => {
+                  setThreadId(chat.thread_id);
+                }}
+              />
+            )}
+          </Tabs.Panel>
+        </Tabs>
+      </VectorDbMasker>
     </Paper>
   );
 }

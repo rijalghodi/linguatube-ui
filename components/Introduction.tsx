@@ -1,27 +1,16 @@
-import { AppLayout, LandingPageLayout } from "@/components/layouts";
 import {
-  Box,
-  Button,
-  Container,
-  Flex,
   Group,
   Modal,
   Stack,
   Text,
-  TextInput,
   Title,
   UnstyledButton,
 } from "@mantine/core";
 import React from "react";
 import Image from "next/image";
-import logo from "@/public/logo.png";
 import demoImage from "@/public/og_image.png";
 import { useDisclosure } from "@mantine/hooks";
 import Link from "next/link";
-import { IconBubble, IconMessageCircle } from "@tabler/icons-react";
-import { OpenaiApiKeyInput } from "@/components";
-import { useRouter } from "next/router";
-import { NativeLanguageInput } from "./NativeLanguageInput";
 import { Entry } from "./Entry";
 
 type Props = {};

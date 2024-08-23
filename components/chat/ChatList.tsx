@@ -53,12 +53,11 @@ export function ChatList(props: Props) {
     });
 
   const handleCreateThread = async () => {
-    const newThread = await createThreadMutate({
+    await createThreadMutate({
       videoId: id as string,
       mode: "chat",
       title: "",
     });
-    router.push({ query: { ...router.query, "thread-id": newThread?.id } });
   };
 
   if (!threads?.count || threads.count === 0)

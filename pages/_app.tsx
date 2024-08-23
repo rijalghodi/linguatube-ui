@@ -7,10 +7,10 @@ import { theme } from "../theme";
 import { Fira_Sans, Montserrat, Source_Sans_3 } from "next/font/google";
 import { DefaultSeo } from "next-seo";
 import { defaultSeo } from "../next-seo.config";
-import { SettingModal } from "@/components/SettingModal";
-import { AboutModal } from "@/components/AboutModal";
-import { VocabBookModal } from "@/components/VocabBookModal";
-import { VocabInfoModal } from "@/components/VocabInfoModal";
+import { SettingModal } from "@/components/settings/SettingModal";
+import { AboutModal } from "@/components/settings/AboutModal";
+import { VocabBookModal } from "@/components/vocabs/VocabBookModal";
+import { VocabInfoModal } from "@/components/vocabs/VocabInfoModal";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Notifications } from "@mantine/notifications";
 

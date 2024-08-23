@@ -20,7 +20,7 @@ import {
 import Image from "next/image";
 import logo from "@/public/logo.png";
 
-import { OpenaiApiKeyInput } from "../OpenaiApiKeyInput";
+import { OpenaiApiKeyInput } from "../settings/OpenaiApiKeyInput";
 import { useDisclosure } from "@mantine/hooks";
 import {
   IconChevronsLeft,
