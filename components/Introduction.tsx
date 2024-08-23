@@ -11,6 +11,7 @@ import { useDisclosure } from "@mantine/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import { Entry } from "./Entry";
+import { Examples } from "./intro/Examples";
 
 type Props = {};
 
@@ -43,6 +44,18 @@ export function Introduction({}: Props) {
         {/* ================== */}
         <Entry />
         {/* ================== */}
+      </Stack>
+      <Stack align="center" component="section">
+        <Text
+          component="p"
+          fz={{ base: "h4", xs: "h3" }}
+          c="var(--mantine-color-dimmed)"
+          ta="center"
+          mb="xl"
+        >
+          Try this:
+        </Text>
+        <Examples />
       </Stack>
       <Stack align="center" component="section">
         <Title order={2} fz="h1">
