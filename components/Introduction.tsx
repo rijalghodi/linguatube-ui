@@ -75,6 +75,12 @@ export function Introduction({}: Props) {
             objectFit="cover"
             placeholder="blur"
             fill
+            style={{
+              aspectRatio: "16 / 9",
+              overflow: "clip",
+              cursor: "pointer",
+              borderRadius: 16,
+            }}
           />
         </UnstyledButton>
       </Stack>
@@ -122,7 +128,7 @@ export function Introduction({}: Props) {
         <iframe
           width="100%"
           height="100%"
-          src="https://www.youtube.com/embed/5M7GC7bWtA4"
+          src="https://www.youtube.com/embed/LixwOIyjoD8"
           title='ONE PIECE Teaser  "The Log of the Turbulent Revolution! The Revolutionary Army Maneuvers in Secret!"'
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

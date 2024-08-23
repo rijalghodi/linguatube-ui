@@ -15,7 +15,7 @@ const defaultSeo: DefaultSeoProps = {
       "Linguatube is an AI-powered application designed to help you learn English while watching YouTube. With our AI's assistance, you can enhance your vocabulary, grammar, and more. Try it out now!",
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_DEPLOY_URL}/og-image.jpg`,
+        url: `${process.env.NEXT_PUBLIC_DEPLOY_URL}/og_image.png`,
         width: 800,
         height: 600,
         alt: "Og Image Alt",
