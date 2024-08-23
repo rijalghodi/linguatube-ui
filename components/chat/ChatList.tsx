@@ -10,16 +10,9 @@ import {
   Stack,
   Text,
 } from "@mantine/core";
-import {
-  IconBolt,
-  IconFlask,
-  IconMessage,
-  IconMessage2,
-  IconShoe,
-} from "@tabler/icons-react";
+import { IconBolt, IconMessage, IconMessage2 } from "@tabler/icons-react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import React from "react";
 
 type Chat = {
   thread_id: string;

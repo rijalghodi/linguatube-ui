@@ -1,6 +1,5 @@
 import { PasswordInput, PasswordInputProps } from "@mantine/core";
 import React, { useState } from "react";
-import { useOpenaiApiKey } from "@/store/openai_api_key.store";
 type Props = PasswordInputProps;
 export function OpenaiApiKeyInput(props: Props) {
   const initKey = localStorage.getItem("linguatube.openaiApiKey");
@@ -8,11 +7,11 @@ export function OpenaiApiKeyInput(props: Props) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e?.target.value;
-    if (value) {
-      localStorage.setItem("linguatube.openaiApiKey", value);
-    }
+
+    localStorage.setItem("linguatube.openaiApiKey", value);
+
     setKey(value);
-  };
+  };      
 
   return (
     <PasswordInput

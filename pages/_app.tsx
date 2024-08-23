@@ -1,20 +1,26 @@
-import "@mantine/core/styles.css";
-import "@mantine/notifications/styles.css";
-import "@/styles/global.css";
-import { MantineColorScheme, MantineProvider } from "@mantine/core";
-import { ModalsProvider } from "@mantine/modals";
-import { theme } from "../theme";
-import { Fira_Sans, Montserrat, Source_Sans_3 } from "next/font/google";
-import { DefaultSeo } from "next-seo";
-import { defaultSeo } from "../next-seo.config";
-import { SettingModal } from "@/components/settings/SettingModal";
 import { AboutModal } from "@/components/settings/AboutModal";
+import { SettingModal } from "@/components/settings/SettingModal";
 import { VocabBookModal } from "@/components/vocabs/VocabBookModal";
 import { VocabInfoModal } from "@/components/vocabs/VocabInfoModal";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "@/styles/global.css";
+import { MantineProvider } from "@mantine/core";
+import "@mantine/core/styles.css";
+import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
+import "@mantine/notifications/styles.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { DefaultSeo } from "next-seo";
+import { Fira_Sans } from "next/font/google";
+import { defaultSeo } from "../next-seo.config";
+import { theme } from "../theme";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false, // default: true
+    },
+  },
+});
 
 const font = Fira_Sans({
   subsets: ["latin"],

@@ -1,13 +1,13 @@
-import { Button, Flex, Stack, TextInput } from "@mantine/core";
-import React, { useState } from "react";
-import { OpenaiApiKeyInput } from "./settings/OpenaiApiKeyInput";
-import { NativeLanguageInput } from "./settings/NativeLanguageInput";
-import { IconMessageCircle } from "@tabler/icons-react";
-import { useRouter } from "next/router";
-import { useMutation } from "@tanstack/react-query";
 import { scrapYoutube } from "@/requests/scrap-youtube";
 import { getYoutubeId } from "@/utils/getYoutubeId";
+import { Button, Flex, Stack, TextInput } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
+import { IconMessageCircle } from "@tabler/icons-react";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { NativeLanguageInput } from "./settings/NativeLanguageInput";
+import { OpenaiApiKeyInput } from "./settings/OpenaiApiKeyInput";
 type Props = {};
 export function Entry(props: Props) {
   const router = useRouter();
@@ -27,19 +27,29 @@ export function Entry(props: Props) {
       });
       return;
     }
-    const data = await scrapMutate({ youtubeId });
-    if (!data) {
+
+    try {
+      const data = await scrapMutate({ youtubeId });
+      if (!data) {
+        notifications.show({
+          message:
+            "Something went wrong. This video might not have a transcript available.",
+          color: "red",
+        });
+        return;
+      }
+      router.push({
+        pathname: "/",
+        query: { id: data.video.id },
+      });
+    } catch (error) {
       notifications.show({
-        message: "Something went wrong",
+        message:
+          "Something went wrong. This video might not have a transcript available.",
         color: "red",
       });
       return;
     }
-
-    router.push({
-      pathname: "/",
-      query: { id: data.video.id },
-    });
   };
   return (
     <Stack component="section" maw={600} w="100%" mx="auto" align="center">

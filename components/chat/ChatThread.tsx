@@ -204,10 +204,10 @@ export function ChatThread(props: Props) {
           )}
           {botIsGenerating && (
             <Group gap="sm">
-              <Loader size={16} color="gray" type="dots" />
               <Text c="var(--mantine-color-default-border)">
-                Assistant is writing...
+                Assistant is writing
               </Text>
+              <Loader size={16} color="gray" type="dots" />
             </Group>
           )}
         </Stack>
