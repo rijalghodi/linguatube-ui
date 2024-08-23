@@ -1,19 +1,8 @@
-import {
-  ActionIcon,
-  ColorSchemeScript,
-  Modal,
-  ModalProps,
-  Select,
-  Stack,
-  useMantineColorScheme,
-} from "@mantine/core";
-import React from "react";
-import { OpenaiApiKeyInput } from "./OpenaiApiKeyInput";
-import { Button, Text } from "@mantine/core";
-import { ContextModalProps, ModalsProvider } from "@mantine/modals";
-import { NativeLanguageInput } from "./NativeLanguageInput";
-import { IconMoon, IconSun } from "@tabler/icons-react";
+import { Stack, Text } from "@mantine/core";
+import { ContextModalProps } from "@mantine/modals";
 import { ColorSchemeInput } from "./ColorSchemeInput";
+import { NativeLanguageInput } from "./NativeLanguageInput";
+import { OpenaiApiKeyInput } from "./OpenaiApiKeyInput";
 
 export function SettingModal({
   innerProps,

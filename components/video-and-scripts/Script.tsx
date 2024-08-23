@@ -1,22 +1,13 @@
 import {
-  getFullSentenceFromSelection,
-  getFullWordFromSelection,
+  getFullSentenceSelection,
+  getFullWordSelection,
   getSelectionPosition,
 } from "@/utils";
-import { timestampToSeconds } from "@/utils/timestampToSeconds";
-import {
-  Stack,
-  Group,
-  ActionIcon,
-  Text,
-  Tooltip,
-  Paper,
-  Button,
-  Divider,
-} from "@mantine/core";
+import { timestampToSecond } from "@/utils/timestamp-to-second";
+import { ActionIcon, Group, Stack, Text, Tooltip } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { IconLanguageHiragana, IconVolume2 } from "@tabler/icons-react";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type ScriptData = {
   text: string;
@@ -50,8 +41,8 @@ export function Script(props: Props) {
         selection.toString().length > 0 &&
         selection.rangeCount > 0
       ) {
-        const fullWord = getFullWordFromSelection(selection);
-        const fullSentence = getFullSentenceFromSelection(selection);
+        const fullWord = getFullWordSelection(selection);
+        const fullSentence = getFullSentenceSelection(selection);
         const selectionPos = getSelectionPosition(selection);
 
         if (fullWord) setSelectedFullWord(fullWord);
@@ -87,7 +78,7 @@ export function Script(props: Props) {
             variant="subtle"
             radius="xl"
             onClick={() => {
-              props.onSeekTo?.(timestampToSeconds(script.timestamp));
+              props.onSeekTo?.(timestampToSecond(script.timestamp));
             }}
           >
             <IconVolume2 size={16} />

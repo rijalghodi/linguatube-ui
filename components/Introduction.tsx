@@ -1,3 +1,4 @@
+import demoImage from "@/public/og_image.png";
 import {
   Group,
   Modal,
@@ -6,10 +7,8 @@ import {
   Title,
   UnstyledButton,
 } from "@mantine/core";
-import React from "react";
-import Image from "next/image";
-import demoImage from "@/public/og_image.png";
 import { useDisclosure } from "@mantine/hooks";
+import Image from "next/image";
 import Link from "next/link";
 import { Entry } from "./Entry";
 

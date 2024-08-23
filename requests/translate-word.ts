@@ -1,4 +1,3 @@
-import { Vocab, WordInfo } from "@/types/vocab";
 import { axiosInstance } from "./axios-instace";
 
 type Request = {
@@ -18,7 +17,7 @@ export const translateWord = async ({
   const apiKey = localStorage.getItem("linguatube.openaiApiKey");
 
   try {
-    const response = await axiosInstance.post<Response>("/translate/", {
+    const response = await axiosInstance.post<Response>("/word/translate/", {
       word,
       sentence,
       language: nativeLanguage,

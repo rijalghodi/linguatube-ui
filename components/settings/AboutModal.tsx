@@ -1,8 +1,5 @@
-import { Group, Modal, ModalProps, Select, Stack } from "@mantine/core";
-import React from "react";
-import { OpenaiApiKeyInput } from "./OpenaiApiKeyInput";
-import { Button, Text } from "@mantine/core";
-import { ContextModalProps, ModalsProvider } from "@mantine/modals";
+import { Group, Stack, Text } from "@mantine/core";
+import { ContextModalProps } from "@mantine/modals";
 import Link from "next/link";
 
 export function AboutModal({

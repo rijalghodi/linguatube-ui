@@ -1,4 +1,4 @@
-import { Vocab, WordInfo } from "@/types/vocab";
+import { WordInfo } from "@/types/vocab";
 import { axiosInstance } from "./axios-instace";
 
 type Request = {
@@ -13,7 +13,7 @@ export const invokeWordInfo = async ({ word, sentence = "" }: Request) => {
   const apiKey = localStorage.getItem("linguatube.openaiApiKey");
 
   try {
-    const response = await axiosInstance.post<Response>("/word-info/", {
+    const response = await axiosInstance.post<Response>("/word/info/", {
       word,
       sentence,
       api_key: apiKey,

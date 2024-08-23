@@ -1,6 +1,5 @@
-import { Video } from "@/types/video";
-import { axiosInstance } from "./axios-instace";
 import { Transcript } from "@/types/transcript";
+import { axiosInstance } from "./axios-instace";
 
 type Request = {
   videoId: string;

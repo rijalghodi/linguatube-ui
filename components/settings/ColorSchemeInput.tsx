@@ -4,7 +4,6 @@ import {
   SelectProps,
   useMantineColorScheme,
 } from "@mantine/core";
-import React, { useEffect } from "react";
 type Props = SelectProps;
 export function ColorSchemeInput(props: Props) {
   const { setColorScheme, colorScheme } = useMantineColorScheme();

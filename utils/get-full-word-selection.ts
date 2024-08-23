@@ -1,4 +1,4 @@
-export function getFullWordFromSelection(selection: Selection): string | null {
+export function getFullWordSelection(selection: Selection): string | null {
   if (!selection?.rangeCount) return null;
 
   const range = selection.getRangeAt(0);

@@ -1,6 +1,5 @@
 import { Vocab } from "@/types/vocab";
-import { Stack, Text, Table, TableData, ScrollArea, Box } from "@mantine/core";
-import React from "react";
+import { Box, Table, TableData, Text } from "@mantine/core";
 type Props = {};
 export function VocabBook(props: Props) {
   const vocabString = localStorage.getItem("linguatube.vocab");

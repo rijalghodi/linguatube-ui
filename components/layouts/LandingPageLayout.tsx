@@ -1,20 +1,8 @@
-import {
-  ActionIcon,
-  AppShell,
-  Box,
-  Button,
-  Container,
-  Group,
-  ScrollArea,
-  Stack,
-  Text,
-  Title,
-  Tooltip,
-} from "@mantine/core";
-import Link from "next/link";
-import Image from "next/image";
 import logo from "@/public/logo.png";
+import { ActionIcon, AppShell, Group, Stack, Text } from "@mantine/core";
 import { IconBrandGithub } from "@tabler/icons-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export function LandingPageLayout({ children }: { children: React.ReactNode }) {
   return (

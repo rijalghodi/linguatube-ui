@@ -1,6 +1,6 @@
-import { Select, SelectProps } from "@mantine/core";
-import React, { useState } from "react";
 import languages from "@/data/languages.json";
+import { Select, SelectProps } from "@mantine/core";
+import { useState } from "react";
 type Props = SelectProps;
 export function NativeLanguageInput(props: Props) {
   const initLanguage = localStorage.getItem("linguatube.nativeLanguage");

@@ -1,21 +1,18 @@
-import { axiosInstance } from "@/requests/axios-instace";
-import { invokeWordInfo } from "@/requests/invokeWordInfo";
-import { translateWord } from "@/requests/translateWord";
+import { invokeWordInfo } from "@/requests/get-word-info";
+import { translateWord } from "@/requests/translate-word";
 import { Vocab, WordInfo } from "@/types/vocab";
 import {
   Button,
-  Stack,
-  TextInput,
-  Text,
   Group,
-  Box,
-  Loader,
   List,
+  Loader,
+  Stack,
+  Text,
+  TextInput,
   useMantineColorScheme,
 } from "@mantine/core";
-import { useColorScheme } from "@mantine/hooks";
 import { useMutation } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 type Props = {
   word: string;
   meaning?: string;

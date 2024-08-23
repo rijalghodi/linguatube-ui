@@ -1,11 +1,5 @@
-import { ActionIcon, Box, Button, Group, Stack } from "@mantine/core";
-import {
-  ForwardedRef,
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from "react";
+import { Stack } from "@mantine/core";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import YouTubeIFrameCtrl from "youtube-iframe-ctrl";
 type YoutubePlayerProps = {
   youtubeId: string;

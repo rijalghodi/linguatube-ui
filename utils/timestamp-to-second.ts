@@ -1,4 +1,4 @@
-export function timestampToSeconds(timestamp: string): number {
+export function timestampToSecond(timestamp: string): number {
   const [hours, minutes, seconds] = timestamp.split(":").map(Number);
   return hours * 3600 + minutes * 60 + seconds;
 }

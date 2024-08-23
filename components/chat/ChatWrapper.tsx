@@ -1,51 +1,33 @@
+import logo from "@/public/logo.png";
+import { createThread } from "@/requests/create-thread";
 import {
-  Group,
-  Paper,
-  Card,
-  TextInput,
-  Stack,
-  Text,
-  Switch,
   ActionIcon,
-  Box,
-  ScrollArea,
-  CloseButton,
-  Tooltip,
-  Menu,
-  Textarea,
-  Tabs,
   Center,
-  Button,
+  Group,
   Loader,
+  Menu,
+  Paper,
+  Tabs,
+  Text,
+  Tooltip,
 } from "@mantine/core";
-import React, { useState } from "react";
+import {
+  IconBolt,
+  IconChevronDown,
+  IconHistory,
+  IconMenu2,
+  IconPlus,
+} from "@tabler/icons-react";
+import { useMutation } from "@tanstack/react-query";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { ChatList } from "./ChatList";
+import { ChatThread } from "./ChatThread";
+import { VectorDbMasker } from "./VectoDbMasker";
 type Props = {
   onCloseChat?: () => void;
 };
-import Image from "next/image";
-import logo from "@/public/logo.png";
-import {
-  IconArrowUp,
-  IconBolt,
-  IconChevronDown,
-  IconChevronLeft,
-  IconFlask,
-  IconHistory,
-  IconMenu2,
-  IconMessage2,
-  IconMessageCircle,
-  IconPlane,
-  IconPlus,
-  IconSend,
-  IconWriting,
-} from "@tabler/icons-react";
-import { ChatThread } from "./ChatThread";
-import { ChatList } from "./ChatList";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { listThread } from "@/requests/list-thread";
-import { useRouter } from "next/router";
-import { createThread } from "@/requests/create-thread";
-import { VectorDbMasker } from "./VectoDbMasker";
 export function ChatWrapper(props: Props) {
   const router = useRouter();
   const { id } = router.query;

@@ -1,9 +1,7 @@
 import { insertMessage } from "@/requests/insert-message";
 import { listThreadMessage } from "@/requests/list-thread-messages";
-import Markdown from "markdown-to-jsx";
 import {
   ActionIcon,
-  Box,
   Center,
   Group,
   Loader,
@@ -15,8 +13,9 @@ import {
 } from "@mantine/core";
 import { IconSend } from "@tabler/icons-react";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import Markdown from "markdown-to-jsx";
 import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 
 type Message = {
   role?: string;

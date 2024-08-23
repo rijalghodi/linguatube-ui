@@ -1,4 +1,3 @@
-import { Video } from "@/types/video";
 import { axiosInstance } from "./axios-instace";
 
 type Request = {

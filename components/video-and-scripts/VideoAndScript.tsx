@@ -1,23 +1,12 @@
-import {
-  ActionIcon,
-  Box,
-  Center,
-  Group,
-  Loader,
-  ScrollArea,
-  Stack,
-  Text,
-} from "@mantine/core";
-import { IconPlayerPlay, IconVolume2 } from "@tabler/icons-react";
-import { useViewportSize } from "@mantine/hooks";
-import React, { useRef } from "react";
-import { Script } from "./Script";
-import { useQuery } from "@tanstack/react-query";
-import { getVideo } from "@/requests/get-video";
-import { useRouter } from "next/router";
 import { getTranscript } from "@/requests/get-transcript";
+import { getVideo } from "@/requests/get-video";
+import { Box, Center, Loader, ScrollArea, Stack } from "@mantine/core";
+import { useViewportSize } from "@mantine/hooks";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
+import { useRef } from "react";
+import { Script } from "./Script";
 import { YoutubePlayer, YoutubePlayerRef } from "./YoutubePlayer";
-import YouTubeIFrameCtrl from "youtube-iframe-ctrl";
 type Props = {};
 export function VideoAndScript(props: Props) {
   const playerRef = useRef<YoutubePlayerRef>(null);

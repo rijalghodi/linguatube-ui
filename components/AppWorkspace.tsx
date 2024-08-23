@@ -1,15 +1,8 @@
 import { ActionIcon, Box, Container, Group, Tooltip } from "@mantine/core";
-import React from "react";
-import { VideoAndScript } from "./video-and-scripts/VideoAndScript";
-import {
-  IconBook2,
-  IconCancel,
-  IconMessage2,
-  IconMessageCircle,
-  IconX,
-} from "@tabler/icons-react";
-import { ChatWrapper } from "./chat/ChatWrapper";
 import { useDisclosure } from "@mantine/hooks";
+import { IconMessageCircle } from "@tabler/icons-react";
+import { ChatWrapper } from "./chat/ChatWrapper";
+import { VideoAndScript } from "./video-and-scripts/VideoAndScript";
 type Props = {};
 export function AppWorkspace(props: Props) {
   const [chatOpened, { open: openChat, close: closeChat }] =

@@ -11,7 +11,7 @@ export function OpenaiApiKeyInput(props: Props) {
     localStorage.setItem("linguatube.openaiApiKey", value);
 
     setKey(value);
-  };      
+  };
 
   return (
     <PasswordInput

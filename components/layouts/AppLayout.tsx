@@ -1,39 +1,26 @@
+import logo from "@/public/logo.png";
 import {
   ActionIcon,
   AppShell,
-  Box,
-  Burger,
   Button,
   Container,
-  Divider,
   Group,
   MantineColorScheme,
   Menu,
-  NavLink,
-  Paper,
-  ScrollArea,
-  Stack,
   Text,
-  Tooltip,
   useMantineColorScheme,
 } from "@mantine/core";
 import Image from "next/image";
-import logo from "@/public/logo.png";
 
-import { OpenaiApiKeyInput } from "../settings/OpenaiApiKeyInput";
-import { useDisclosure } from "@mantine/hooks";
+import { modals } from "@mantine/modals";
 import {
-  IconChevronsLeft,
   IconInfoCircle,
   IconMenu4,
-  IconPlus,
   IconSettings,
   IconTrash,
 } from "@tabler/icons-react";
-import styles from "@/styles/component.module.css";
-import { modals } from "@mantine/modals";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();

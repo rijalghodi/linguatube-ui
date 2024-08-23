@@ -1,5 +1,5 @@
 import { scrapYoutube } from "@/requests/scrap-youtube";
-import { getYoutubeId } from "@/utils/getYoutubeId";
+import { getYoutubeId } from "@/utils/get-youtube-id";
 import { Button, Flex, Stack, TextInput } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { IconMessageCircle } from "@tabler/icons-react";

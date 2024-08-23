@@ -1,6 +1,4 @@
-export function getFullSentenceFromSelection(
-  selection: Selection
-): string | null {
+export function getFullSentenceSelection(selection: Selection): string | null {
   if (!selection?.rangeCount) return null;
 
   const range = selection.getRangeAt(0);
