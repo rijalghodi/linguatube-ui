@@ -20,8 +20,8 @@ export function Introduction({}: Props) {
     useDisclosure(false);
 
   return (
-    <Stack h="100%" gap={80} maw={800} px="md" mx="auto">
-      <Stack align="center" component="section" gap="lg" py="xl">
+    <Stack h="100%" gap={66} maw={800} px="md" mx="auto">
+      <Stack align="center" component="section" gap="lg" pt="xl">
         <Title
           order={1}
           fz={{ base: 40, xs: 48 }}
@@ -51,9 +51,8 @@ export function Introduction({}: Props) {
           fz={{ base: "h4", xs: "h3" }}
           c="var(--mantine-color-dimmed)"
           ta="center"
-          mb="xl"
         >
-          Try this:
+          Or try this recommended videos:
         </Text>
         <Examples />
       </Stack>

@@ -10,7 +10,7 @@ import { Notifications } from "@mantine/notifications";
 import "@mantine/notifications/styles.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DefaultSeo } from "next-seo";
-import { Fira_Sans } from "next/font/google";
+import { Roboto } from "next/font/google";
 import { defaultSeo } from "../next-seo.config";
 import { theme } from "../theme";
 
@@ -22,9 +22,9 @@ const queryClient = new QueryClient({
   },
 });
 
-const font = Fira_Sans({
+const font = Roboto({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "700"],
 });
 
 export default function App({ Component, pageProps }: any) {
